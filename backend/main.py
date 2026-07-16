@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+
 from llm import choose_starting_url
 from agent import Agent
+
 
 app = FastAPI()
 
@@ -13,6 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 class AnalyzeRequest(BaseModel):
     url: str
@@ -25,7 +28,7 @@ def home():
 
 
 @app.post("/analyze")
-def analyze(request: AnalyzeRequest):
+async def analyze(request: AnalyzeRequest):
     agent = Agent()
 
     url = request.url.strip()
@@ -33,12 +36,12 @@ def analyze(request: AnalyzeRequest):
     if not url:
         url = choose_starting_url(request.task)
 
-    summary = agent.run(
+    summary = await agent.run(
         url,
-        request.task
+        request.task,
     )
 
     return {
         "url": url,
-        "summary": summary
+        "summary": summary,
     }

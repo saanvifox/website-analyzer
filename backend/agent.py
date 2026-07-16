@@ -1,4 +1,4 @@
-from browser import Browser
+=from browser import Browser
 from llm import ask_llm
 import json
 
@@ -8,80 +8,62 @@ class Agent:
     def __init__(self):
         self.browser = None
 
-
-    def observe(self):
-
+    async def observe(self):
         return {
-            "url": self.browser.get_url(),
-            "title": self.browser.get_title(),
-            "links": self.browser.get_links()[:20],
-            "text": self.browser.get_text()[:3000]
+            "url": await self.browser.get_url(),
+            "title": await self.browser.get_title(),
+            "links": (await self.browser.get_links())[:20],
+            "text": (await self.browser.get_text())[:3000],
         }
 
-
     def think(self, observation, task):
-
         return ask_llm(observation, task)
 
-
-    def act(self, action):
-
+    async def act(self, action):
         action_type = action["action"]
 
         if action_type == "CLICK":
-
             target = action["target"]
-
             print("Clicking:", target)
 
-            self.browser.click_text(target)
-
+            await self.browser.click_text(target)
             return None
 
-
-        elif action_type == "SCROLL":
-
+        if action_type == "SCROLL":
             print("Scrolling")
 
-            self.browser.scroll()
-
+            await self.browser.scroll()
             return None
 
-
-        elif action_type == "FINISH":
-
+        if action_type == "FINISH":
             print("Finished")
-
             return action["answer"]
 
+        raise ValueError(f"Unknown action: {action_type}")
 
-        else:
-
-            raise Exception(f"Unknown action: {action_type}")
-
-
-    def run(self, url, task):
-
+    async def run(self, url, task):
         self.browser = Browser()
 
-        self.browser.goto(url)
+        try:
+            await self.browser.start()
+            await self.browser.goto(url)
 
-        while True:
+            for _ in range(10):
+                observation = await self.observe()
 
-            observation = self.observe()
+                print(observation["title"])
 
-            print(observation["title"])
+                response = self.think(observation, task)
 
-            response = self.think(observation, task)
+                print(response)
 
-            print(response)
+                action = json.loads(response)
+                result = await self.act(action)
 
-            action = json.loads(response)
+                if result is not None:
+                    return result
 
-            result = self.act(action)
+            return "The agent reached its maximum number of steps."
 
-            if result is not None:
-
-                self.browser.close()
-
-                return result
+        finally:
+            await self.browser.close()
