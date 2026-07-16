@@ -9,25 +9,22 @@ class Agent:
         self.browser = None
 
 
-    async def observe(self):
+    def observe(self):
 
-        observation = {
-            "url": await self.browser.get_url(),
-            "title": await self.browser.get_title(),
-            "links": (await self.browser.get_links())[:20],
-            "text": (await self.browser.get_text())[:3000]
+        return {
+            "url": self.browser.get_url(),
+            "title": self.browser.get_title(),
+            "links": self.browser.get_links()[:20],
+            "text": self.browser.get_text()[:3000]
         }
-
-        return observation
 
 
     def think(self, observation, task):
 
-        # ask_llm() is synchronous because it uses requests.post()
         return ask_llm(observation, task)
 
 
-    async def act(self, action):
+    def act(self, action):
 
         action_type = action["action"]
 
@@ -35,9 +32,9 @@ class Agent:
 
             target = action["target"]
 
-            print(f"Clicking: {target}")
+            print("Clicking:", target)
 
-            await self.browser.click_text(target)
+            self.browser.click_text(target)
 
             return None
 
@@ -46,14 +43,14 @@ class Agent:
 
             print("Scrolling")
 
-            await self.browser.scroll()
+            self.browser.scroll()
 
             return None
 
 
         elif action_type == "FINISH":
 
-            print("Task Complete")
+            print("Finished")
 
             return action["answer"]
 
@@ -63,33 +60,28 @@ class Agent:
             raise Exception(f"Unknown action: {action_type}")
 
 
-    async def run(self, url, task):
+    def run(self, url, task):
 
         self.browser = Browser()
 
-        await self.browser.start()
-
-        await self.browser.goto(url)
+        self.browser.goto(url)
 
         while True:
 
-            observation = await self.observe()
+            observation = self.observe()
 
             print(observation["title"])
 
-            response = self.think(
-                observation,
-                task
-            )
+            response = self.think(observation, task)
 
             print(response)
 
             action = json.loads(response)
 
-            result = await self.act(action)
+            result = self.act(action)
 
             if result is not None:
 
-                await self.browser.close()
+                self.browser.close()
 
                 return result
