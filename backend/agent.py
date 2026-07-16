@@ -1,4 +1,4 @@
-=from browser import Browser
+from browser import Browser
 from llm import ask_llm
 import json
 
