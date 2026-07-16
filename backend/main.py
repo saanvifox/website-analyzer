@@ -25,16 +25,15 @@ def home():
 
 
 @app.post("/analyze")
-async def analyze(request: AnalyzeRequest):
-
+def analyze(request: AnalyzeRequest):
     agent = Agent()
 
-    url = request.url
+    url = request.url.strip()
 
-    if url == "":
+    if not url:
         url = choose_starting_url(request.task)
 
-    summary = await agent.run(
+    summary = agent.run(
         url,
         request.task
     )
