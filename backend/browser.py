@@ -1,54 +1,48 @@
-from playwright.async_api import async_playwright
+from playwright.sync_api import sync_playwright
 
 
 class Browser:
 
     def __init__(self):
-        self.playwright = None
-        self.browser = None
-        self.page = None
+        self.playwright = sync_playwright().start()
+        self.browser = self.playwright.chromium.launch(headless=True)
+        self.page = self.browser.new_page()
 
 
-    async def start(self):
-        self.playwright = await async_playwright().start()
-        self.browser = await self.playwright.chromium.launch(headless=False)
-        self.page = await self.browser.new_page()
+    def goto(self, url: str):
+        self.page.goto(url)
 
 
-    async def goto(self, url: str):
-        await self.page.goto(url)
+    def get_title(self):
+        return self.page.title()
 
 
-    async def get_title(self):
-        return await self.page.title()
+    def get_text(self):
+        return self.page.locator("body").inner_text()
 
 
-    async def get_text(self):
-        return await self.page.locator("body").inner_text()
+    def click(self, selector: str):
+        self.page.click(selector)
 
 
-    async def click(self, selector: str):
-        await self.page.click(selector)
+    def click_text(self, text: str):
+       self.page.locator(f'a:has-text("{text}")').first.click()
 
 
-    async def click_text(self, text: str):
-        await self.page.get_by_text(text, exact=False).first.click()
+    def type(self, selector: str, text: str):
+        self.page.fill(selector, text)
 
 
-    async def type(self, selector: str, text: str):
-        await self.page.fill(selector, text)
+    def scroll(self):
+        self.page.mouse.wheel(0, 1000)
 
 
-    async def scroll(self):
-        await self.page.mouse.wheel(0, 1000)
-
-
-    async def get_url(self):
+    def get_url(self):
         return self.page.url
 
 
-    async def get_links(self):
-        links = await self.page.locator("a").evaluate_all(
+    def get_links(self):
+        return self.page.locator("a").evaluate_all(
             """
             elements => elements.map(e => ({
                 text: e.innerText,
@@ -57,13 +51,11 @@ class Browser:
             """
         )
 
-        return links
+
+    def screenshot(self, filename="page.png"):
+        self.page.screenshot(path=filename)
 
 
-    async def screenshot(self, filename="page.png"):
-        await self.page.screenshot(path=filename)
-
-
-    async def close(self):
-        await self.browser.close()
-        await self.playwright.stop()
+    def close(self):
+        self.browser.close()
+        self.playwright.stop()
