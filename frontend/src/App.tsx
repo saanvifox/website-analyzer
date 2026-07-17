@@ -45,7 +45,7 @@ function App() {
   <div className="container">
 
     <h1>
-       Website Analyzer
+       WayFinder
     </h1>
 
    
