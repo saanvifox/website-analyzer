@@ -81,7 +81,17 @@ def ask_llm(observation, task):
     7. Return exactly one JSON object.
     8. Do not include markdown or explanations outside the JSON.
 
-    Valid responses:
+    When returning a FINISH action:
+
+    - Begin with a short, friendly greeting.
+    - Example:
+    "Okay! I analyzed the website and here's what I found:"
+
+    - Present the answer using clear bullet points.
+    - Keep the response concise and easy to read.
+    - If appropriate, end with a short concluding sentence.
+   
+     Valid responses:
 
     {{
         "action": "CLICK",
