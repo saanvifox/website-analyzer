@@ -1,83 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
-  font-family:"Courier New", monospace;;
+  font-family: "Space Grotesk", sans-serif;
   background: #90c1d7;
+  color: #1f2937;
 }
-
 
 .container {
   max-width: 800px;
-  margin: 80px auto;
+  margin: 60px auto;
   padding: 20px;
 }
 
-
 h1 {
+  margin-bottom: 10px;
   text-align: center;
-  font-family:"Courier New", monospace;
-  font-size: 42px;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
 }
-
 
 .subtitle {
-  text-align: center;
-  font-family: "Courier New", monospace;
-
-  color: #666;
   margin-bottom: 40px;
+  text-align: center;
+  color: #435263;
+  font-size: 18px;
+  font-weight: 500;
 }
-
 
 .card,
 .result {
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
   margin-bottom: 25px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  padding: 30px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
-
 
 label {
   display: block;
-  font-weight: bold;
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
-
-input {
+input,
+textarea {
   width: 100%;
-  padding: 14px;
+  box-sizing: border-box;
   margin-bottom: 20px;
+  padding: 14px 16px;
 
-  border-radius: 10px;
-  border: 1px solid #ccc;
-
+  font-family: inherit;
   font-size: 16px;
+  color: #1f2937;
+
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
 }
 
+input:focus,
+textarea:focus {
+  border-color: #395591;
+  box-shadow: 0 0 0 3px rgba(57, 85, 145, 0.15);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
 
 button {
   width: 100%;
   padding: 15px;
 
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+
+  color: white;
+  background: #395591;
   border: none;
   border-radius: 10px;
 
-  background: #395591;
-  color: white;
-
-  font-size: 17px;
   cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
-
 
 button:hover {
-  opacity: 0.9;
+  opacity: 0.92;
+  transform: translateY(-1px);
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.result {
+  text-align: left;
+}
 
 .result p {
-  line-height: 1.6;
+  margin: 0;
+  line-height: 1.7;
   white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 30px auto;
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .card,
+  .result {
+    padding: 22px;
+  }
 }

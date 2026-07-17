@@ -45,12 +45,10 @@ function App() {
   <div className="container">
 
     <h1>
-      🌐 Website Analyzer
+       Website Analyzer
     </h1>
 
-    <p className="subtitle">
-      Analyze websites using AI-powered insights
-    </p>
+   
 
 
     <div className="card">
@@ -90,7 +88,7 @@ function App() {
     <div className="result">
 
       <h2>
-        AI Summary
+        Agent Output
       </h2>
 
       <p>
