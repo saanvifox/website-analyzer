@@ -104,7 +104,7 @@ RULES:
 2. Never invent an element ID, page fact, name, statistic, or URL.
 3. Do not answer from general knowledge when the task asks you to
    inspect the website.
-4. Do not return FINISH based on vague or partial homepage text.
+4. Do not return FINISH based on vague or partial homepage text, continue searching by clicking or searching.
 5. Before FINISH, reach the page, result, profile, table, map, or
    detail view that directly supports the answer.
 6. After every click, hover, search, selection, or navigation, inspect
