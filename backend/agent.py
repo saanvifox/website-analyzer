@@ -20,8 +20,8 @@ class Agent:
         return {
             "url": await self.browser.get_url(),
             "title": await self.browser.get_title(),
-            "interactive_elements": elements[:100],
-            "text": page_text[:8000],
+            "interactive_elements": elements[:40],
+            "text": page_text[:3500],
         }
 
     async def think(self, observation, task):
