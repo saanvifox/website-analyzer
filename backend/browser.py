@@ -17,15 +17,17 @@ class Browser:
 
         self.page = await self.browser.new_page()
 
-    async def goto(self, url: str):
+    async def goto(self, url: str) -> bool:
         try:
             await self.page.goto(
                 url,
                 wait_until="domcontentloaded",
                 timeout=30000,
             )
+            return True
         except Exception as error:
             print("Navigation warning:", error)
+            return False
 
     async def get_title(self):
         return await self.page.title()
@@ -36,10 +38,22 @@ class Browser:
     async def click(self, selector: str):
         await self.page.click(selector)
 
-    async def click_text(self, text: str):
-        await self.page.locator(
-            f'a:has-text("{text}")'
-        ).first.click(timeout=10000)
+    async def click_text(self, text: str) -> bool:
+        try:
+            locator = self.page.get_by_text(text, exact=True)
+
+            if await locator.count() == 0:
+                print(f'No element found containing text: "{text}"')
+                return False
+
+            await locator.first.click(timeout=10000)
+            return True
+
+        except Exception as error:
+            print(f'Click failed for "{text}": {error}')
+            return False
+
+
 
     async def type(self, selector: str, text: str):
         await self.page.fill(selector, text)
@@ -50,13 +64,17 @@ class Browser:
     async def get_url(self):
         return self.page.url
 
-    async def get_links(self):
-        return await self.page.locator("a").evaluate_all(
+    async def get_clickable_elements(self):
+        return await self.page.locator(
+            "a, button, [role='button'], input[type='button'], input[type='submit']"
+        ).evaluate_all(
             """
-            elements => elements.map(e => ({
-                text: e.innerText,
-                href: e.href
-            }))
+            elements => elements
+                .map(e => ({
+                    text: (e.innerText || e.value || "").trim(),
+                    tag: e.tagName.toLowerCase()
+                }))
+                .filter(e => e.text.length > 0)
             """
         )
 

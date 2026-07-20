@@ -2,7 +2,7 @@ import os
 import requests
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "qwen/qwen3-32b"
+GROQ_MODEL = "openai/gpt-oss-120b"
 
 
 def call_groq(prompt: str, json_mode: bool = False) -> str:
@@ -47,7 +47,7 @@ def call_groq(prompt: str, json_mode: bool = False) -> str:
     return data["choices"][0]["message"]["content"].strip()
 
 
-def ask_llm(observation, task):
+def ask_llm(observation, task, history):
 
     prompt = f"""
     You are controlling a web browser.
@@ -55,6 +55,9 @@ def ask_llm(observation, task):
     Your job is to complete this task:
 
     {task}
+
+    Previous Actions:
+    {history}
 
     Current page:
 
@@ -64,23 +67,24 @@ def ask_llm(observation, task):
     Title:
     {observation["title"]}
 
-    Visible links (ONLY these may be clicked):
-    {observation["links"]}
+    Visible navigation items (ONLY these may be clicked):
+    {observation["clickable_elements"]}
 
     Visible page text:
     {observation["text"]}
 
     IMPORTANT RULES:
 
-    1. You may ONLY click a link that appears EXACTLY in the "Visible links" list above.
-    2. NEVER invent links.
+    1. You may ONLY click text that appears EXACTLY in the "Visible navigation items" list above.
+    2. NEVER invent clickable elements.
     3. NEVER guess.
     4. If the information needed to answer the task is already on the page, return FINISH immediately.
-    5. If there is no useful link to click, return FINISH.
-    6. The target MUST exactly match the text of one visible link.
+    5. If there is no useful element to click, return FINISH.
+    6. The target MUST exactly match the text of one visible item in list above.
     7. Return exactly one JSON object.
     8. Do not include markdown or explanations outside the JSON.
-
+    9. Review the Previous Actions before choosing the next action.
+    10. Do not repeat a failed action unless there is a clear reason.
     When returning a FINISH action:
 
     - Begin with a short, friendly greeting.
