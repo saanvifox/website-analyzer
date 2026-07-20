@@ -94,6 +94,9 @@ ACTION HISTORY:
 
 Your job is to complete the task by navigating and interacting with
 the current website.
+Feel free to search things with text you find appropriate. Sometimes you have
+to click on the searched item to confirm your search. Feel free to pick the top
+result when asked for "best" item.
 
 RULES:
 
