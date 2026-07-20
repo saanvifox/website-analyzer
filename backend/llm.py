@@ -51,7 +51,7 @@ def ask_llm(observation, task, history):
 
     prompt = f"""
     You are controlling a web browser.
-
+    
     Your job is to complete this task:
 
     {task}
