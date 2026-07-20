@@ -1,242 +1,474 @@
-import json
-import os
-import textwrap
-
-import requests
-
-
-GROQ_API_URL = (
-    "https://api.groq.com/openai/v1/chat/completions"
+from playwright.async_api import (
+TimeoutError as PlaywrightTimeoutError,
+    async_playwright,
 )
 
-GROQ_MODEL = "openai/gpt-oss-120b"
 
-MAX_PAGE_TEXT_CHARS = 3500
-MAX_INTERACTIVE_ELEMENTS = 40
-MAX_HISTORY_ITEMS = 6
-MAX_PROMPT_CHARS = 25000
+class Browser:
+    def __init__(self):
+        self.playwright = None
+        self.browser = None
+        self.page = None
 
+    async def start(self):
+        self.playwright = await async_playwright().start()
 
-def call_groq(
-    prompt: str,
-    json_mode: bool = False,
-) -> str:
-    api_key = os.getenv("GROQ_API_KEY")
-
-    if not api_key:
-        raise RuntimeError(
-            "GROQ_API_KEY is missing from the environment"
+        self.browser = await self.playwright.chromium.launch(
+            headless=True,
         )
 
-    request_body = {
-        "model": GROQ_MODEL,
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt,
+        self.page = await self.browser.new_page(
+            viewport={
+                "width": 1440,
+                "height": 1000,
             }
-        ],
-        "temperature": 0,
-    }
-
-    if json_mode:
-        request_body["response_format"] = {
-            "type": "json_object"
-        }
-
-    response = requests.post(
-        GROQ_API_URL,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        json=request_body,
-        timeout=90,
-    )
-
-    if not response.ok:
-        raise RuntimeError(
-            "Groq API failed with HTTP "
-            f"{response.status_code}: {response.text}"
         )
 
-    data = response.json()
+    async def goto(self, url: str) -> bool:
+        url = url.strip().strip('"').strip("'")
 
-    try:
-        return data["choices"][0]["message"]["content"].strip()
-    except (KeyError, IndexError, TypeError) as error:
-        raise RuntimeError(
-            f"Unexpected Groq response format: {data}"
-        ) from error
+        if not url.startswith(("http://", "https://")):
+            print(f"Invalid URL: {url}")
+            return False
 
+        try:
+            await self.page.goto(
+                url,
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
 
-def build_prompt(
-    observation: dict,
-    task: str,
-    history: list,
-) -> str:
-    page_text = str(
-        observation.get("text", "")
-    )[:MAX_PAGE_TEXT_CHARS]
+            await self.wait_after_action()
+            return True
 
-    elements = observation.get(
-        "interactive_elements",
-        [],
-    )[:MAX_INTERACTIVE_ELEMENTS]
+        except Exception as error:
+            print("Navigation warning:", error)
+            return False
 
-    recent_history = history[-MAX_HISTORY_ITEMS:]
+    async def get_title(self) -> str:
+        return await self.page.title()
 
-    # Compact JSON uses fewer characters and tokens than indent=2.
-    elements_json = json.dumps(
-        elements,
-        ensure_ascii=False,
-        separators=(",", ":"),
-    )
+    async def get_text(self) -> str:
+        try:
+            text = await self.page.locator(
+                "body"
+            ).inner_text(timeout=10000)
 
-    history_json = json.dumps(
-        recent_history,
-        ensure_ascii=False,
-        separators=(",", ":"),
-        default=str,
-    )
+            lines = [
+                line.strip()
+                for line in text.splitlines()
+                if line.strip()
+            ]
 
-    prompt = textwrap.dedent(
-        f"""
-        You are an autonomous browser navigation agent.
+            unique_lines = list(dict.fromkeys(lines))
 
-        USER TASK:
-        {task}
+            return "\n".join(unique_lines)
 
-        CURRENT PAGE:
-        URL: {observation.get("url", "")}
-        Title: {observation.get("title", "")}
+        except Exception:
+            return ""
 
-        VISIBLE PAGE TEXT:
-        {page_text}
+    async def get_url(self) -> str:
+        return self.page.url
 
-        VISIBLE INTERACTIVE ELEMENTS:
-        {elements_json}
+    async def wait_after_action(self):
+        try:
+            await self.page.wait_for_load_state(
+                "domcontentloaded",
+                timeout=5000,
+            )
 
-        ACTION HISTORY:
-        {history_json}
+        except PlaywrightTimeoutError:
+            pass
 
-        RULES:
+        await self.page.wait_for_timeout(750)
 
-        1. Use only element IDs present in VISIBLE INTERACTIVE ELEMENTS.
-        2. Never invent an element ID, page fact, name, statistic, or URL.
-        3. Do not answer from general knowledge.
-        4. Do not finish based only on vague homepage content.
-        5. Inspect the relevant page before answering.
-        6. After each action, inspect the new observation.
-        7. Do not repeat failed actions without a clear reason.
-        8. Use SCROLL when useful content may be lower on the page.
-        9. Use BACK after opening an irrelevant page.
-        10. Return exactly one JSON object.
-
-        For team-related tasks:
-
-        - Do not treat testimonials as employees or staff.
-        - Look for Team, Our People, Staff, Leadership, Board,
-          Who We Are, or About.
-        - Open dropdowns using CLICK or HOVER.
-        - Only finish after reaching a relevant team or leadership page,
-          or confirming that the website does not provide one.
-
-        AVAILABLE ACTIONS:
-
-        CLICK
-        {{
-          "action": "CLICK",
-          "element_id": "12"
-        }}
-
-        TYPE
-        {{
-          "action": "TYPE",
-          "element_id": "7",
-          "text": "Mumbai"
-        }}
-
-        PRESS
-        {{
-          "action": "PRESS",
-          "element_id": "7",
-          "key": "Enter"
-        }}
-
-        SELECT
-        {{
-          "action": "SELECT",
-          "element_id": "4",
-          "value": "Mumbai"
-        }}
-
-        HOVER
-        {{
-          "action": "HOVER",
-          "element_id": "9"
-        }}
-
-        SCROLL
-        {{
-          "action": "SCROLL",
-          "amount": 900
-        }}
-
-        BACK
-        {{
-          "action": "BACK"
-        }}
-
-        WAIT
-        {{
-          "action": "WAIT",
-          "milliseconds": 1500
-        }}
-
-        NAVIGATE
-        {{
-          "action": "NAVIGATE",
-          "url": "https://example.com"
-        }}
-
-        FINISH
-        {{
-          "action": "FINISH",
-          "answer": "Final answer supported by the website."
-        }}
+    async def get_interactive_elements(self):
         """
-    ).strip()
+        Finds visible, useful interactive elements and assigns temporary IDs.
 
-    if len(prompt) > MAX_PROMPT_CHARS:
-        raise ValueError(
-            "Prompt is still too large after trimming: "
-            f"{len(prompt)} characters"
+        The IDs remain valid until the next observation refresh.
+        """
+
+        return await self.page.evaluate(
+            """
+            () => {
+                document
+                    .querySelectorAll("[data-agent-id]")
+                    .forEach(element => {
+                        element.removeAttribute("data-agent-id");
+                    });
+
+                const selector = [
+                    "a",
+                    "button",
+                    "input",
+                    "textarea",
+                    "select",
+                    "[role='button']",
+                    "[role='link']",
+                    "[role='menuitem']",
+                    "[role='combobox']"
+                ].join(",");
+
+                const elements = Array.from(
+                    document.querySelectorAll(selector)
+                );
+
+                const results = [];
+                let id = 0;
+
+                for (const element of elements) {
+                    const style = window.getComputedStyle(element);
+                    const rect = element.getBoundingClientRect();
+
+                    const visible =
+                        style.display !== "none" &&
+                        style.visibility !== "hidden" &&
+                        Number(style.opacity || 1) > 0 &&
+                        rect.width > 0 &&
+                        rect.height > 0;
+
+                    if (!visible || element.disabled) {
+                        continue;
+                    }
+
+                    const tag = element.tagName.toLowerCase();
+                    const type = (
+                        element.getAttribute("type") || ""
+                    ).toLowerCase();
+
+                    if (tag === "input" && type === "hidden") {
+                        continue;
+                    }
+
+                    const text = (
+                        element.innerText ||
+                        element.value ||
+                        element.getAttribute("aria-label") ||
+                        element.getAttribute("title") ||
+                        element.getAttribute("alt") ||
+                        ""
+                    )
+                        .trim()
+                        .replace(/\\s+/g, " ")
+                        .slice(0, 120);
+
+                    const placeholder = (
+                        element.getAttribute("placeholder") || ""
+                    )
+                        .trim()
+                        .slice(0, 120);
+
+                    const hasUsefulDescription =
+                        Boolean(text) ||
+                        Boolean(placeholder) ||
+                        Boolean(element.getAttribute("aria-label")) ||
+                        tag === "select";
+
+                    if (!hasUsefulDescription) {
+                        continue;
+                    }
+
+                    const elementId = String(id);
+
+                    element.setAttribute(
+                        "data-agent-id",
+                        elementId
+                    );
+
+                    const result = {
+                        id: elementId,
+                        tag
+                    };
+
+                    if (text) {
+                        result.text = text;
+                    }
+
+                    if (placeholder) {
+                        result.placeholder = placeholder;
+                    }
+
+                    if (type) {
+                        result.type = type;
+                    }
+
+                    if (tag === "select") {
+                        result.options = Array.from(
+                            element.options
+                        )
+                            .map(option => ({
+                                label: option.text.trim(),
+                                value: option.value
+                            }))
+                            .slice(0, 20);
+                    }
+
+                    results.push(result);
+                    id += 1;
+                }
+
+                return results;
+            }
+            """
         )
 
-    return prompt
+    def locator_by_id(self, element_id: str):
+        return self.page.locator(
+            f'[data-agent-id="{element_id}"]'
+        )
 
+    async def click_by_id(self, element_id: str) -> bool:
+        try:
+            locator = self.locator_by_id(element_id)
 
-def send_prompt(prompt: str) -> str:
-    return call_groq(
-        prompt,
-        json_mode=True,
-    )
+            if await locator.count() == 0:
+                print(
+                    f"Element ID {element_id} was not found."
+                )
+                return False
 
+            target = locator.first
 
-def ask_llm(
-    observation: dict,
-    task: str,
-    history: list,
-) -> str:
-    prompt = build_prompt(
-        observation,
-        task,
-        history,
-    )
+            await target.scroll_into_view_if_needed()
 
-    answer = send_prompt(prompt)
+            try:
+                await target.click(timeout=10000)
 
-    print("Groq action:", answer)
+            except Exception:
+                print(
+                    f"Normal click failed for element "
+                    f"{element_id}; trying JavaScript click."
+                )
 
-    return answer
+                await target.evaluate(
+                    "element => element.click()"
+                )
+
+            await self.wait_after_action()
+            return True
+
+        except Exception as error:
+            print(
+                f"Click failed for element "
+                f"{element_id}: {error}"
+            )
+            return False
+
+    async def hover_by_id(self, element_id: str) -> bool:
+        try:
+            locator = self.locator_by_id(element_id)
+
+            if await locator.count() == 0:
+                print(
+                    f"Element ID {element_id} was not found."
+                )
+                return False
+
+            target = locator.first
+
+            await target.scroll_into_view_if_needed()
+            await target.hover(timeout=10000)
+            await self.page.wait_for_timeout(1000)
+
+            return True
+
+        except Exception as error:
+            print(
+                f"Hover failed for element "
+                f"{element_id}: {error}"
+            )
+            return False
+
+    async def fill_by_id(
+        self,
+        element_id: str,
+        text: str,
+    ) -> bool:
+        try:
+            locator = self.locator_by_id(element_id)
+
+            if await locator.count() == 0:
+                print(
+                    f"Input ID {element_id} was not found."
+                )
+                return False
+
+            target = locator.first
+
+            await target.scroll_into_view_if_needed()
+            await target.click(timeout=10000)
+
+            tag_name = await target.evaluate(
+                "element => element.tagName.toLowerCase()"
+            )
+
+            is_contenteditable = await target.evaluate(
+                """
+                element =>
+                    element.getAttribute("contenteditable") === "true"
+                """
+            )
+
+            if tag_name in ("input", "textarea"):
+                try:
+                    await target.fill(text)
+
+                except Exception:
+                    await target.press("Control+A")
+                    await target.type(
+                        text,
+                        delay=30,
+                    )
+
+            elif is_contenteditable:
+                try:
+                    await target.fill(text)
+
+                except Exception:
+                    await target.press("Control+A")
+                    await target.type(
+                        text,
+                        delay=30,
+                    )
+
+            else:
+                print(
+                    f"Element {element_id} is not editable."
+                )
+                return False
+
+            await self.page.wait_for_timeout(500)
+            return True
+
+        except Exception as error:
+            print(
+                f"Typing failed for element "
+                f"{element_id}: {error}"
+            )
+            return False
+
+    async def press_by_id(
+        self,
+        element_id: str,
+        key: str,
+    ) -> bool:
+        try:
+            locator = self.locator_by_id(element_id)
+
+            if await locator.count() == 0:
+                print(
+                    f"Element ID {element_id} was not found."
+                )
+                return False
+
+            await locator.first.press(key)
+            await self.wait_after_action()
+
+            return True
+
+        except Exception as error:
+            print(
+                f'Key press "{key}" failed on element '
+                f"{element_id}: {error}"
+            )
+            return False
+
+    async def select_by_id(
+        self,
+        element_id: str,
+        value: str,
+    ) -> bool:
+        try:
+            locator = self.locator_by_id(element_id)
+
+            if await locator.count() == 0:
+                print(
+                    f"Select ID {element_id} was not found."
+                )
+                return False
+
+            target = locator.first
+
+            try:
+                await target.select_option(label=value)
+
+            except Exception:
+                await target.select_option(value=value)
+
+            await self.wait_after_action()
+            return True
+
+        except Exception as error:
+            print(
+                f'Select failed for element {element_id}, '
+                f'value "{value}": {error}'
+            )
+            return False
+
+    async def scroll(self, amount: int = 800):
+        amount = max(
+            -2000,
+            min(amount, 2000),
+        )
+
+        await self.page.mouse.wheel(
+            0,
+            amount,
+        )
+
+        await self.page.wait_for_timeout(750)
+
+    async def go_back(self) -> bool:
+        try:
+            response = await self.page.go_back(
+                wait_until="domcontentloaded",
+                timeout=15000,
+            )
+
+            if response is None:
+                print(
+                    "No previous page in browser history."
+                )
+                return False
+
+            await self.wait_after_action()
+            return True
+
+        except Exception as error:
+            print(
+                "Back navigation failed:",
+                error,
+            )
+            return False
+
+    async def wait(
+        self,
+        milliseconds: int = 1500,
+    ):
+        milliseconds = max(
+            100,
+            min(milliseconds, 10000),
+        )
+
+        await self.page.wait_for_timeout(
+            milliseconds
+        )
+
+    async def screenshot(
+        self,
+        filename: str = "page.png",
+    ):
+        await self.page.screenshot(
+            path=filename,
+            full_page=True,
+        )
+
+    async def close(self):
+        try:
+            if self.browser:
+                await self.browser.close()
+
+        finally:
+            if self.playwright:
+                await self.playwright.stop()
