@@ -1,12 +1,12 @@
-from browser import Browser
-from llm import ask_llm
-from harness import Harness, ActionResult
-
+import asyncio
 import json
+
+from browser import Browser
+from harness import ActionResult, Harness
+from llm import ask_llm
 
 
 class Agent:
-
     MAX_STEPS = 20
 
     def __init__(self):
@@ -24,9 +24,17 @@ class Agent:
             "text": page_text[:8000],
         }
 
-    def think(self, observation, task):
+    async def think(self, observation, task):
         history = self.harness.get_history()
-        return ask_llm(observation, task, history)
+
+        # requests.post() is synchronous, so run it in a worker thread
+        # instead of blocking FastAPI's event loop.
+        return await asyncio.to_thread(
+            ask_llm,
+            observation,
+            task,
+            history,
+        )
 
     def record(
         self,
@@ -61,7 +69,6 @@ class Agent:
                 )
 
             element_id = str(element_id)
-
             print("Clicking element:", element_id)
 
             success = await self.browser.click_by_id(element_id)
@@ -69,11 +76,8 @@ class Agent:
             self.record(
                 "CLICK",
                 element_id,
-                "Click succeeded"
-                if success
-                else "Click failed",
+                "Click succeeded" if success else "Click failed",
             )
-
             return None
 
         if action_type == "TYPE":
@@ -91,6 +95,7 @@ class Agent:
                 )
 
             element_id = str(element_id)
+            text = str(text)
 
             print(
                 f'Typing "{text}" into element {element_id}'
@@ -98,7 +103,7 @@ class Agent:
 
             success = await self.browser.fill_by_id(
                 element_id,
-                str(text),
+                text,
             )
 
             self.record(
@@ -110,7 +115,6 @@ class Agent:
                     else f'Failed to type "{text}"'
                 ),
             )
-
             return None
 
         if action_type == "PRESS":
@@ -128,10 +132,11 @@ class Agent:
                 )
 
             element_id = str(element_id)
+            key = str(key)
 
             success = await self.browser.press_by_id(
                 element_id,
-                str(key),
+                key,
             )
 
             self.record(
@@ -143,7 +148,6 @@ class Agent:
                     else f'Failed to press "{key}"'
                 ),
             )
-
             return None
 
         if action_type == "SELECT":
@@ -161,10 +165,11 @@ class Agent:
                 )
 
             element_id = str(element_id)
+            value = str(value)
 
             success = await self.browser.select_by_id(
                 element_id,
-                str(value),
+                value,
             )
 
             self.record(
@@ -176,7 +181,6 @@ class Agent:
                     else f'Failed to select "{value}"'
                 ),
             )
-
             return None
 
         if action_type == "HOVER":
@@ -196,11 +200,8 @@ class Agent:
             self.record(
                 "HOVER",
                 element_id,
-                "Hover succeeded"
-                if success
-                else "Hover failed",
+                "Hover succeeded" if success else "Hover failed",
             )
-
             return None
 
         if action_type == "SCROLL":
@@ -212,7 +213,6 @@ class Agent:
                 amount = 800
 
             amount = max(-2000, min(amount, 2000))
-
             await self.browser.scroll(amount)
 
             self.record(
@@ -220,7 +220,6 @@ class Agent:
                 "page",
                 f"Scrolled by {amount}px",
             )
-
             return None
 
         if action_type == "BACK":
@@ -229,11 +228,12 @@ class Agent:
             self.record(
                 "BACK",
                 "browser",
-                "Back navigation succeeded"
-                if success
-                else "Back navigation failed",
+                (
+                    "Back navigation succeeded"
+                    if success
+                    else "Back navigation failed"
+                ),
             )
-
             return None
 
         if action_type == "WAIT":
@@ -247,6 +247,11 @@ class Agent:
             except (TypeError, ValueError):
                 milliseconds = 1500
 
+            milliseconds = max(
+                100,
+                min(milliseconds, 10000),
+            )
+
             await self.browser.wait(milliseconds)
 
             self.record(
@@ -254,7 +259,6 @@ class Agent:
                 "page",
                 f"Waited {milliseconds} milliseconds",
             )
-
             return None
 
         if action_type == "NAVIGATE":
@@ -265,16 +269,18 @@ class Agent:
                     "NAVIGATE did not include a URL."
                 )
 
-            success = await self.browser.goto(str(url))
+            url = str(url)
+            success = await self.browser.goto(url)
 
             self.record(
                 "NAVIGATE",
-                str(url),
-                "Navigation succeeded"
-                if success
-                else "Navigation failed",
+                url,
+                (
+                    "Navigation succeeded"
+                    if success
+                    else "Navigation failed"
+                ),
             )
-
             return None
 
         if action_type == "FINISH":
@@ -285,13 +291,14 @@ class Agent:
                     "FINISH did not include an answer."
                 )
 
+            answer = str(answer)
+
             self.record(
                 "FINISH",
                 "task",
-                str(answer),
+                answer,
             )
-
-            return str(answer)
+            return answer
 
         raise ValueError(
             f"Unknown action: {action_type}"
@@ -320,7 +327,7 @@ class Agent:
                 print("Page:", observation["title"])
                 print("URL:", observation["url"])
 
-                response = self.think(
+                response = await self.think(
                     observation,
                     task,
                 )
@@ -341,14 +348,13 @@ class Agent:
                         "LLM",
                         str(error),
                     )
-
                     continue
 
                 if not isinstance(action, dict):
                     self.record(
                         "INVALID_ACTION",
                         "LLM",
-                        "The response was not a JSON object.",
+                        "Response was not a JSON object.",
                     )
                     continue
 
@@ -360,10 +366,9 @@ class Agent:
 
                     self.record(
                         "ACTION_ERROR",
-                        action.get("action", "unknown"),
+                        str(action.get("action", "unknown")),
                         str(error),
                     )
-
                     continue
 
                 if result is not None:

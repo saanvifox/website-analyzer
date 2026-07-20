@@ -1,8 +1,10 @@
-from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.async_api import (
+    TimeoutError as PlaywrightTimeoutError,
+    async_playwright,
+)
 
 
 class Browser:
-
     def __init__(self):
         self.playwright = None
         self.browser = None
@@ -12,7 +14,7 @@ class Browser:
         self.playwright = await async_playwright().start()
 
         self.browser = await self.playwright.chromium.launch(
-            headless=True
+            headless=True,
         )
 
         self.page = await self.browser.new_page(
@@ -35,7 +37,6 @@ class Browser:
                 wait_until="domcontentloaded",
                 timeout=30000,
             )
-
             await self.wait_after_action()
             return True
 
@@ -43,10 +44,10 @@ class Browser:
             print("Navigation warning:", error)
             return False
 
-    async def get_title(self):
+    async def get_title(self) -> str:
         return await self.page.title()
 
-    async def get_text(self):
+    async def get_text(self) -> str:
         try:
             return await self.page.locator("body").inner_text(
                 timeout=10000
@@ -54,7 +55,7 @@ class Browser:
         except Exception:
             return ""
 
-    async def get_url(self):
+    async def get_url(self) -> str:
         return self.page.url
 
     async def wait_after_action(self):
@@ -66,17 +67,13 @@ class Browser:
         except PlaywrightTimeoutError:
             pass
 
-        try:
-            await self.page.wait_for_timeout(1000)
-        except Exception:
-            pass
+        await self.page.wait_for_timeout(750)
 
     async def get_interactive_elements(self):
         """
-        Finds visible interactive elements and assigns each one a temporary
-        data-agent-id. The LLM interacts using these IDs instead of text.
+        Finds visible interactive elements and assigns temporary IDs.
+        The IDs remain valid until the next observation refresh.
         """
-
         return await self.page.evaluate(
             """
             () => {
@@ -92,7 +89,6 @@ class Browser:
                     "input",
                     "textarea",
                     "select",
-                    "option",
                     "[role='button']",
                     "[role='link']",
                     "[role='menuitem']",
@@ -124,28 +120,23 @@ class Browser:
                         rect.width > 0 &&
                         rect.height > 0;
 
-                    if (!visible) {
+                    if (!visible || element.disabled) {
                         continue;
                     }
 
-                    if (element.disabled) {
-                        continue;
-                    }
+                    const tag = element.tagName.toLowerCase();
+                    const type =
+                        (element.getAttribute("type") || "").toLowerCase();
 
-                    if (
-                        element.tagName.toLowerCase() === "input" &&
-                        element.type === "hidden"
-                    ) {
+                    if (tag === "input" && type === "hidden") {
                         continue;
                     }
 
                     const elementId = String(id);
                     element.setAttribute("data-agent-id", elementId);
 
-                    const tag = element.tagName.toLowerCase();
                     const role =
-                        element.getAttribute("role") ||
-                        tag;
+                        element.getAttribute("role") || tag;
 
                     const text = (
                         element.innerText ||
@@ -154,7 +145,10 @@ class Browser:
                         element.getAttribute("title") ||
                         element.getAttribute("alt") ||
                         ""
-                    ).trim().replace(/\\s+/g, " ").slice(0, 200);
+                    )
+                        .trim()
+                        .replace(/\\s+/g, " ")
+                        .slice(0, 200);
 
                     const placeholder =
                         element.getAttribute("placeholder") || "";
@@ -162,11 +156,16 @@ class Browser:
                     const name =
                         element.getAttribute("name") || "";
 
-                    const type =
-                        element.getAttribute("type") || "";
-
                     const href =
                         element.getAttribute("href") || "";
+
+                    const options =
+                        tag === "select"
+                            ? Array.from(element.options).map(option => ({
+                                label: option.text.trim(),
+                                value: option.value
+                            })).slice(0, 50)
+                            : [];
 
                     results.push({
                         id: elementId,
@@ -176,7 +175,8 @@ class Browser:
                         placeholder,
                         name,
                         type,
-                        href: href.slice(0, 300)
+                        href: href.slice(0, 300),
+                        options
                     });
 
                     id += 1;
@@ -187,7 +187,7 @@ class Browser:
             """
         )
 
-    def locator_by_id(self, element_id):
+    def locator_by_id(self, element_id: str):
         return self.page.locator(
             f'[data-agent-id="{element_id}"]'
         )
@@ -200,9 +200,9 @@ class Browser:
                 print(f"Element ID {element_id} was not found.")
                 return False
 
-            await locator.first.scroll_into_view_if_needed()
-            await locator.first.click(timeout=10000)
-
+            target = locator.first
+            await target.scroll_into_view_if_needed()
+            await target.click(timeout=10000)
             await self.wait_after_action()
             return True
 
@@ -215,11 +215,12 @@ class Browser:
             locator = self.locator_by_id(element_id)
 
             if await locator.count() == 0:
+                print(f"Element ID {element_id} was not found.")
                 return False
 
-            await locator.first.scroll_into_view_if_needed()
-            await locator.first.hover(timeout=10000)
-
+            target = locator.first
+            await target.scroll_into_view_if_needed()
+            await target.hover(timeout=10000)
             await self.page.wait_for_timeout(750)
             return True
 
@@ -239,27 +240,25 @@ class Browser:
                 print(f"Input ID {element_id} was not found.")
                 return False
 
-            await locator.first.scroll_into_view_if_needed()
-            await locator.first.click(timeout=10000)
+            target = locator.first
+            await target.scroll_into_view_if_needed()
+            await target.click(timeout=10000)
 
-            tag_name = await locator.first.evaluate(
+            tag_name = await target.evaluate(
                 "element => element.tagName.toLowerCase()"
             )
-
-            is_contenteditable = await locator.first.evaluate(
+            is_contenteditable = await target.evaluate(
                 """
                 element =>
                     element.getAttribute("contenteditable") === "true"
                 """
             )
 
-            if tag_name in ("input", "textarea"):
-                await locator.first.fill(text)
-            elif is_contenteditable:
-                await locator.first.fill(text)
+            if tag_name in ("input", "textarea") or is_contenteditable:
+                await target.fill(text)
             else:
                 print(
-                    f"Element {element_id} is not an editable field."
+                    f"Element {element_id} is not editable."
                 )
                 return False
 
@@ -279,6 +278,7 @@ class Browser:
             locator = self.locator_by_id(element_id)
 
             if await locator.count() == 0:
+                print(f"Element ID {element_id} was not found.")
                 return False
 
             await locator.first.press(key)
@@ -301,12 +301,15 @@ class Browser:
             locator = self.locator_by_id(element_id)
 
             if await locator.count() == 0:
+                print(f"Select ID {element_id} was not found.")
                 return False
 
+            target = locator.first
+
             try:
-                await locator.first.select_option(label=value)
+                await target.select_option(label=value)
             except Exception:
-                await locator.first.select_option(value=value)
+                await target.select_option(value=value)
 
             await self.wait_after_action()
             return True
@@ -319,15 +322,20 @@ class Browser:
             return False
 
     async def scroll(self, amount: int = 800):
+        amount = max(-2000, min(amount, 2000))
         await self.page.mouse.wheel(0, amount)
         await self.page.wait_for_timeout(750)
 
     async def go_back(self) -> bool:
         try:
-            await self.page.go_back(
+            response = await self.page.go_back(
                 wait_until="domcontentloaded",
                 timeout=15000,
             )
+
+            if response is None:
+                print("No previous page in browser history.")
+                return False
 
             await self.wait_after_action()
             return True
@@ -340,15 +348,16 @@ class Browser:
         milliseconds = max(100, min(milliseconds, 10000))
         await self.page.wait_for_timeout(milliseconds)
 
-    async def screenshot(self, filename="page.png"):
+    async def screenshot(self, filename: str = "page.png"):
         await self.page.screenshot(
             path=filename,
             full_page=True,
         )
 
     async def close(self):
-        if self.browser:
-            await self.browser.close()
-
-        if self.playwright:
-            await self.playwright.stop()
+        try:
+            if self.browser:
+                await self.browser.close()
+        finally:
+            if self.playwright:
+                await self.playwright.stop()
