@@ -40,21 +40,33 @@ class Harness:
             f"Result: {action_node.data.result}\n"
         )
 
-    def get_history(self) -> str:
+    def get_history(self,limit: int = 5,) -> str:
         if self.head is None:
-            return "No action taken yet."
+            return "No previous actions."
 
-        history = ""
+        actions = []
         current = self.head
-        index = 1
 
         while current is not None:
-            history += (
-                f"\nAction {index}:\n"
-                f"{self.action_to_text(current)}"
+            actions.append(current.data)
+            current = current.next
+
+        recent_actions = actions[-limit:]
+
+        lines = []
+
+        for index, action in enumerate(
+            recent_actions,
+            start=1,
+        ):
+            result = action.result.replace(
+                "\n",
+                " ",
+            )[:300]
+
+            lines.append(
+                f"{index}. {action.prev_action} "
+                f"{action.prev_target} -> {result}"
             )
 
-            current = current.next
-            index += 1
-
-        return history
+        return "\n".join(lines)

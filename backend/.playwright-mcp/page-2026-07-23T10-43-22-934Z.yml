@@ -1,0 +1,50 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - separator [ref=f3e3]
+    - iframe [ref=f3e8]:
+      - generic [ref=f4e2]:
+        - generic [ref=f4e3]:
+          - checkbox "I'm not a robot" [ref=f4e7]
+          - generic [ref=f4e9]: I'm not a robot
+        - generic [ref=f4e12]: reCAPTCHA
+    - separator [ref=f3e9]
+    - generic [ref=f3e10]:
+      - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+      - link "Why did this happen?" [ref=f3e11] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f3e12]: "IP address: 2401:4900:88b2:83f7:c139:bfbf:10bc:8359Time: 2026-07-23T10:43:19ZURL: https://www.google.com/search?q=Mumbai+weather&sca_esv=00274532949d0f23&source=hp&ei=QvBhaq3JMomQseMP54aFoAk&iflsig=ABILxe8AAAAAamH-UsR29wVfW0JoiBmL11QwxaOzT3iq&ved=0ahUKEwit8t7izuiVAxUJSGwGHWdDAZQQ4dUDCA4&uact=5&oq=Mumbai+weather&gs_lp=Egdnd3Mtd2l6Ig5NdW1iYWkgd2VhdGhlckgKUABYAHAAeACQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgCgAgCYAwCSBwCgBwCyBwC4BwDCBwDIBwCACAE&sclient=gws-wiz&sei=RfBhateaH_fOkPIPxInCuAU"
+  - iframe [active] [ref=f3e16]:
+    - dialog [ref=f7e3]:
+      - generic [ref=f7e4]:
+        - generic [ref=f7e7]:
+          - text: Select all squares with
+          - strong [ref=f7e8]: motorcycles
+          - generic [ref=f7e9]: If there are none, click skip
+        - table [ref=f7e12]:
+          - rowgroup [ref=f7e13]:
+            - row [ref=f7e14]:
+              - button [ref=f7e15]
+              - button [ref=f7e18]
+              - button [ref=f7e21]
+              - button [ref=f7e24]
+            - row [ref=f7e27]:
+              - button [ref=f7e28]
+              - button [ref=f7e31]
+              - button [ref=f7e34]
+              - button [ref=f7e37]
+            - row [ref=f7e40]:
+              - button [ref=f7e41]
+              - button [ref=f7e44]
+              - button [ref=f7e47]
+              - button [ref=f7e50]
+            - row [ref=f7e53]:
+              - button [ref=f7e54]
+              - button [ref=f7e57]
+              - button [ref=f7e60]
+              - button [ref=f7e63]
+      - generic [ref=f7e69]:
+        - generic [ref=f7e70]:
+          - button "Get a new challenge" [ref=f7e72] [cursor=pointer]
+          - button "Get an audio challenge" [ref=f7e74] [cursor=pointer]
+          - button "Help" [ref=f7e76] [cursor=pointer]
+        - button "Skip" [ref=f7e78] [cursor=pointer]

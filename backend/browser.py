@@ -108,6 +108,10 @@ class Browser:
                     "[role='link']",
                     "[role='menuitem']",
                     "[role='combobox']"
+                    "[role='searchbox']",
+                    "[role='textbox']",
+                    "[contenteditable='true']",
+                
                 ].join(",");
 
                 const elements = Array.from(

@@ -1,0 +1,42 @@
+- generic [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - separator [ref=f10e3]
+    - iframe [ref=f10e8]:
+      - generic [ref=f11e2]:
+        - generic [ref=f11e3]:
+          - checkbox "I'm not a robot" [ref=f11e7]
+          - generic [ref=f11e9]: I'm not a robot
+        - generic [ref=f11e12]: reCAPTCHA
+    - separator [ref=f10e9]
+    - generic [ref=f10e10]:
+      - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+      - link "Why did this happen?" [ref=f10e11] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f10e12]: "IP address: 2401:4900:88b2:83f7:d481:450a:57ee:b2adTime: 2026-07-23T10:11:24ZURL: https://www.google.com/search?q=Zara+womens+heels+types+styles&sei=yuhhaoWMPPmz0PEPtcf18Qg"
+  - iframe [active] [ref=f10e16]:
+    - dialog [ref=f14e3]:
+      - generic [ref=f14e4]:
+        - generic [ref=f14e7]:
+          - text: Select all images with
+          - strong [ref=f14e8]: bicycles
+          - generic [ref=f14e9]: Click verify once there are none left
+        - table [ref=f14e12]:
+          - rowgroup [ref=f14e13]:
+            - row [ref=f14e14]:
+              - button [ref=f14e15]
+              - button [ref=f14e18]
+              - button [ref=f14e21]
+            - row [ref=f14e24]:
+              - button [ref=f14e25]
+              - button [ref=f14e28]
+              - button [ref=f14e31]
+            - row [ref=f14e34]:
+              - button [ref=f14e35]
+              - button [ref=f14e38]
+              - button [ref=f14e41]
+      - generic [ref=f14e47]:
+        - generic [ref=f14e48]:
+          - button "Get a new challenge" [ref=f14e50] [cursor=pointer]
+          - button "Get an audio challenge" [ref=f14e52] [cursor=pointer]
+          - button "Help" [ref=f14e54] [cursor=pointer]
+        - button "Verify" [ref=f14e56] [cursor=pointer]

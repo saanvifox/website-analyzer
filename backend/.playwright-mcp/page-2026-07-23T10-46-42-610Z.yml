@@ -1,0 +1,694 @@
+- generic [ref=e1]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "ow logo" [ref=e7]
+      - generic [ref=e8]:
+        - link "Login" [ref=e10] [cursor=pointer]:
+          - /url: https://home.openweathermap.org/users/sign_in
+        - button "Toggle menu" [ref=e12]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - heading "Build with Weather Data" [level=1] [ref=e20]
+          - heading [level=1]
+          - paragraph [ref=e22]: From real-time forecasts to 47+ years of global climate history, OpenWeather provides instant access to weather APIs through self-service subscriptions for developers, analysts, and businesses
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - link "Get API Key" [ref=e25] [cursor=pointer]:
+              - /url: https://home.openweathermap.org/users/sign_in
+          - listitem [ref=e26]:
+            - link "View Pricing" [ref=e27] [cursor=pointer]:
+              - /url: /price
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - heading "Weather forecast" [level=1] [ref=e32]
+            - generic [ref=e33]:
+              - button "°C" [ref=e34]
+              - button "°F" [ref=e35]
+          - generic [ref=e36]:
+            - generic [ref=e37]:
+              - img "Location" [ref=e39]
+              - generic [ref=e40]: London, GB
+            - generic [ref=e42]:
+              - textbox "Search City" [active] [ref=e44]: Mumbai
+              - button "Mumbai, Maharashtra 19.08, 72.88" [ref=e739] [cursor=pointer]:
+                - generic [ref=e747]:
+                  - generic [ref=e748]:
+                    - text: Mumbai
+                    - generic [ref=e749]: ", Maharashtra"
+                  - generic [ref=e750]: 19.08, 72.88
+        - generic [ref=e48]:
+          - button "Today 27° overcast clouds" [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: Today
+            - generic [ref=e51]:
+              - text: "27"
+              - superscript [ref=e52]: °
+            - img "overcast clouds" [ref=e53]
+          - button "Fri 31° overcast clouds" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: Fri
+            - generic [ref=e56]:
+              - text: "31"
+              - superscript [ref=e57]: °
+            - img "overcast clouds" [ref=e58]
+          - button "Sat 30° overcast clouds" [ref=e59] [cursor=pointer]:
+            - generic [ref=e60]: Sat
+            - generic [ref=e61]:
+              - text: "30"
+              - superscript [ref=e62]: °
+            - img "overcast clouds" [ref=e63]
+          - button "Sun 24° light rain" [ref=e64] [cursor=pointer]:
+            - generic [ref=e65]: Sun
+            - generic [ref=e66]:
+              - text: "24"
+              - superscript [ref=e67]: °
+            - img "light rain" [ref=e68]
+          - button "Mon 28° clear sky" [ref=e69] [cursor=pointer]:
+            - generic [ref=e70]: Mon
+            - generic [ref=e71]:
+              - text: "28"
+              - superscript [ref=e72]: °
+            - img "clear sky" [ref=e73]
+          - button "Tue 33° clear sky" [ref=e74] [cursor=pointer]:
+            - generic [ref=e75]: Tue
+            - generic [ref=e76]:
+              - text: "33"
+              - superscript [ref=e77]: °
+            - img "clear sky" [ref=e78]
+          - button "Wed 36° clear sky" [ref=e79] [cursor=pointer]:
+            - generic [ref=e80]: Wed
+            - generic [ref=e81]:
+              - text: "36"
+              - superscript [ref=e82]: °
+            - img "clear sky" [ref=e83]
+          - button "Thu 32° overcast clouds" [ref=e84] [cursor=pointer]:
+            - generic [ref=e85]: Thu
+            - generic [ref=e86]:
+              - text: "32"
+              - superscript [ref=e87]: °
+            - img "overcast clouds" [ref=e88]
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - generic [ref=e92]:
+              - img "London" [ref=e93]
+              - generic [ref=e95]:
+                - generic [ref=e96]: 11:46 AM
+                - generic [ref=e99]:
+                  - generic [ref=e100]: 25°
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: overcast clouds
+                    - generic [ref=e103]: Feels like 24°
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - generic [ref=e106]:
+                  - img "Wind" [ref=e107]
+                  - generic [ref=e108]: Wind
+                - generic [ref=e109]: 1 m/s N
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - img "Humidity" [ref=e112]
+                  - generic [ref=e113]: Humidity
+                - generic [ref=e114]: 49%
+              - generic [ref=e115]:
+                - generic [ref=e116]:
+                  - img "Visibility" [ref=e117]
+                  - generic [ref=e118]: Visibility
+                - generic [ref=e119]: 10km
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - img "Pressure" [ref=e122]
+                  - generic [ref=e123]: Pressure
+                - generic [ref=e124]: 1023 hPa
+              - generic [ref=e125]:
+                - generic [ref=e126]:
+                  - img "UV Index" [ref=e127]
+                  - generic [ref=e128]: UV Index
+                - generic [ref=e129]: 6 UV
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - img "Dew Point" [ref=e132]
+                  - generic [ref=e133]: Dew Point
+                - generic [ref=e134]: 13°C
+          - generic [ref=e136]:
+            - heading "Hourly forecast" [level=2] [ref=e137]
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - generic [ref=e146]: 11 a.m
+                - generic [ref=e147]:
+                  - img "overcast clouds" [ref=e148]
+                  - generic [ref=e149]: 0%
+                - generic [ref=e150]: 24°
+              - generic [ref=e151]:
+                - generic [ref=e152]: 12 p.m
+                - generic [ref=e153]:
+                  - img "overcast clouds" [ref=e154]
+                  - generic [ref=e155]: 0%
+                - generic [ref=e156]: 25°
+              - generic [ref=e157]:
+                - generic [ref=e158]: 1 p.m
+                - generic [ref=e159]:
+                  - img "overcast clouds" [ref=e160]
+                  - generic [ref=e161]: 0%
+                - generic [ref=e162]: 25°
+              - generic [ref=e163]:
+                - generic [ref=e164]: 2 p.m
+                - generic [ref=e165]:
+                  - img "overcast clouds" [ref=e166]
+                  - generic [ref=e167]: 0%
+                - generic [ref=e168]: 25°
+              - generic [ref=e169]:
+                - generic [ref=e170]: 3 p.m
+                - generic [ref=e171]:
+                  - img "overcast clouds" [ref=e172]
+                  - generic [ref=e173]: 0%
+                - generic [ref=e174]: 26°
+              - generic [ref=e175]:
+                - generic [ref=e176]: 4 p.m
+                - generic [ref=e177]:
+                  - img "overcast clouds" [ref=e178]
+                  - generic [ref=e179]: 0%
+                - generic [ref=e180]: 26°
+              - generic [ref=e181]:
+                - generic [ref=e182]: 5 p.m
+                - generic [ref=e183]:
+                  - img "overcast clouds" [ref=e184]
+                  - generic [ref=e185]: 0%
+                - generic [ref=e186]: 27°
+              - generic [ref=e187]:
+                - generic [ref=e188]: 6 p.m
+                - generic [ref=e189]:
+                  - img "overcast clouds" [ref=e190]
+                  - generic [ref=e191]: 0%
+                - generic [ref=e192]: 27°
+              - generic [ref=e193]:
+                - generic [ref=e194]: 7 p.m
+                - generic [ref=e195]:
+                  - img "overcast clouds" [ref=e196]
+                  - generic [ref=e197]: 0%
+                - generic [ref=e198]: 26°
+              - generic [ref=e199]:
+                - generic [ref=e200]: 8 p.m
+                - generic [ref=e201]:
+                  - img "overcast clouds" [ref=e202]
+                  - generic [ref=e203]: 0%
+                - generic [ref=e204]: 24°
+              - generic [ref=e205]:
+                - generic [ref=e206]: 9 p.m
+                - generic [ref=e207]:
+                  - img "overcast clouds" [ref=e208]
+                  - generic [ref=e209]: 0%
+                - generic [ref=e210]: 22°
+              - generic [ref=e211]:
+                - generic [ref=e212]: 10 p.m
+                - generic [ref=e213]:
+                  - img "overcast clouds" [ref=e214]
+                  - generic [ref=e215]: 0%
+                - generic [ref=e216]: 21°
+              - generic [ref=e217]:
+                - generic [ref=e218]: 11 p.m
+                - generic [ref=e219]:
+                  - img "overcast clouds" [ref=e220]
+                  - generic [ref=e221]: 0%
+                - generic [ref=e222]: 20°
+              - generic [ref=e223]:
+                - generic [ref=e224]: 12 a.m
+                - generic [ref=e225]:
+                  - img "overcast clouds" [ref=e226]
+                  - generic [ref=e227]: 0%
+                - generic [ref=e228]: 19°
+              - generic [ref=e229]:
+                - generic [ref=e230]: 1 a.m
+                - generic [ref=e231]:
+                  - img "overcast clouds" [ref=e232]
+                  - generic [ref=e233]: 0%
+                - generic [ref=e234]: 18°
+              - generic [ref=e235]:
+                - generic [ref=e236]: 2 a.m
+                - generic [ref=e237]:
+                  - img "broken clouds" [ref=e238]
+                  - generic [ref=e239]: 0%
+                - generic [ref=e240]: 17°
+              - generic [ref=e241]:
+                - generic [ref=e242]: 3 a.m
+                - generic [ref=e243]:
+                  - img "broken clouds" [ref=e244]
+                  - generic [ref=e245]: 0%
+                - generic [ref=e246]: 17°
+              - generic [ref=e247]:
+                - generic [ref=e248]: 4 a.m
+                - generic [ref=e249]:
+                  - img "broken clouds" [ref=e250]
+                  - generic [ref=e251]: 0%
+                - generic [ref=e252]: 16°
+              - generic [ref=e253]:
+                - generic [ref=e254]: 5 a.m
+                - generic [ref=e255]:
+                  - img "broken clouds" [ref=e256]
+                  - generic [ref=e257]: 0%
+                - generic [ref=e258]: 15°
+              - generic [ref=e259]:
+                - generic [ref=e260]: 6 a.m
+                - generic [ref=e261]:
+                  - img "broken clouds" [ref=e262]
+                  - generic [ref=e263]: 0%
+                - generic [ref=e264]: 15°
+              - generic [ref=e265]:
+                - generic [ref=e266]: 7 a.m
+                - generic [ref=e267]:
+                  - img "broken clouds" [ref=e268]
+                  - generic [ref=e269]: 0%
+                - generic [ref=e270]: 16°
+              - generic [ref=e271]:
+                - generic [ref=e272]: 8 a.m
+                - generic [ref=e273]:
+                  - img "overcast clouds" [ref=e274]
+                  - generic [ref=e275]: 0%
+                - generic [ref=e276]: 18°
+              - generic [ref=e277]:
+                - generic [ref=e278]: 9 a.m
+                - generic [ref=e279]:
+                  - img "overcast clouds" [ref=e280]
+                  - generic [ref=e281]: 0%
+                - generic [ref=e282]: 20°
+              - generic [ref=e283]:
+                - generic [ref=e284]: 10 a.m
+                - generic [ref=e285]:
+                  - img "overcast clouds" [ref=e286]
+                  - generic [ref=e287]: 0%
+                - generic [ref=e288]: 22°
+        - generic [ref=e289]:
+          - generic [ref=e290]: Loading map...
+          - generic [ref=e295]:
+            - generic [ref=e296]:
+              - generic [ref=e297]: Minute forecast - precipitation
+              - generic [ref=e298]:
+                - generic [ref=e299]:
+                  - generic [ref=e300]:
+                    - generic [ref=e301]: Now
+                    - generic [ref=e302]: 11:46 AM
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: 15 min
+                    - generic [ref=e305]: 12:01 PM
+                  - generic [ref=e306]:
+                    - generic [ref=e307]: 30 min
+                    - generic [ref=e308]: 12:16 PM
+                  - generic [ref=e309]:
+                    - generic [ref=e310]: 45 min
+                    - generic [ref=e311]: 12:31 PM
+                  - generic [ref=e312]:
+                    - generic [ref=e313]: 60 min
+                    - generic [ref=e314]: 12:46 PM
+                - generic [ref=e315]:
+                  - generic "No precipitation at 44 min" [ref=e316] [cursor=pointer]
+                  - generic "No precipitation at 45 min" [ref=e317] [cursor=pointer]
+                  - generic "No precipitation at 46 min" [ref=e318] [cursor=pointer]
+                  - generic "No precipitation at 47 min" [ref=e319] [cursor=pointer]
+                  - generic "No precipitation at 48 min" [ref=e320] [cursor=pointer]
+                  - generic "No precipitation at 49 min" [ref=e321] [cursor=pointer]
+                  - generic "No precipitation at 50 min" [ref=e322] [cursor=pointer]
+                  - generic "No precipitation at 51 min" [ref=e323] [cursor=pointer]
+                  - generic "No precipitation at 52 min" [ref=e324] [cursor=pointer]
+                  - generic "No precipitation at 53 min" [ref=e325] [cursor=pointer]
+                  - generic "No precipitation at 54 min" [ref=e326] [cursor=pointer]
+                  - generic "No precipitation at 55 min" [ref=e327] [cursor=pointer]
+                  - generic "No precipitation at 56 min" [ref=e328] [cursor=pointer]
+                  - generic "No precipitation at 57 min" [ref=e329] [cursor=pointer]
+                  - generic "No precipitation at 58 min" [ref=e330] [cursor=pointer]
+                  - generic "No precipitation at 59 min" [ref=e331] [cursor=pointer]
+                  - generic "No precipitation at 0 min" [ref=e332] [cursor=pointer]
+                  - generic "No precipitation at 1 min" [ref=e333] [cursor=pointer]
+                  - generic "No precipitation at 2 min" [ref=e334] [cursor=pointer]
+                  - generic "No precipitation at 3 min" [ref=e335] [cursor=pointer]
+                  - generic "No precipitation at 4 min" [ref=e336] [cursor=pointer]
+                  - generic "No precipitation at 5 min" [ref=e337] [cursor=pointer]
+                  - generic "No precipitation at 6 min" [ref=e338] [cursor=pointer]
+                  - generic "No precipitation at 7 min" [ref=e339] [cursor=pointer]
+                  - generic "No precipitation at 8 min" [ref=e340] [cursor=pointer]
+                  - generic "No precipitation at 9 min" [ref=e341] [cursor=pointer]
+                  - generic "No precipitation at 10 min" [ref=e342] [cursor=pointer]
+                  - generic "No precipitation at 11 min" [ref=e343] [cursor=pointer]
+                  - generic "No precipitation at 12 min" [ref=e344] [cursor=pointer]
+                  - generic "No precipitation at 13 min" [ref=e345] [cursor=pointer]
+                  - generic "No precipitation at 14 min" [ref=e346] [cursor=pointer]
+                  - generic "No precipitation at 15 min" [ref=e347] [cursor=pointer]
+                  - generic "No precipitation at 16 min" [ref=e348] [cursor=pointer]
+                  - generic "No precipitation at 17 min" [ref=e349] [cursor=pointer]
+                  - generic "No precipitation at 18 min" [ref=e350] [cursor=pointer]
+                  - generic "No precipitation at 19 min" [ref=e351] [cursor=pointer]
+                  - generic "No precipitation at 20 min" [ref=e352] [cursor=pointer]
+                  - generic "No precipitation at 21 min" [ref=e353] [cursor=pointer]
+                  - generic "No precipitation at 22 min" [ref=e354] [cursor=pointer]
+                  - generic "No precipitation at 23 min" [ref=e355] [cursor=pointer]
+                  - generic "No precipitation at 24 min" [ref=e356] [cursor=pointer]
+                  - generic "No precipitation at 25 min" [ref=e357] [cursor=pointer]
+                  - generic "No precipitation at 26 min" [ref=e358] [cursor=pointer]
+                  - generic "No precipitation at 27 min" [ref=e359] [cursor=pointer]
+                  - generic "No precipitation at 28 min" [ref=e360] [cursor=pointer]
+                  - generic "No precipitation at 29 min" [ref=e361] [cursor=pointer]
+                  - generic "No precipitation at 30 min" [ref=e362] [cursor=pointer]
+                  - generic "No precipitation at 31 min" [ref=e363] [cursor=pointer]
+                  - generic "No precipitation at 32 min" [ref=e364] [cursor=pointer]
+                  - generic "No precipitation at 33 min" [ref=e365] [cursor=pointer]
+                  - generic "No precipitation at 34 min" [ref=e366] [cursor=pointer]
+                  - generic "No precipitation at 35 min" [ref=e367] [cursor=pointer]
+                  - generic "No precipitation at 36 min" [ref=e368] [cursor=pointer]
+                  - generic "No precipitation at 37 min" [ref=e369] [cursor=pointer]
+                  - generic "No precipitation at 38 min" [ref=e370] [cursor=pointer]
+                  - generic "No precipitation at 39 min" [ref=e371] [cursor=pointer]
+                  - generic "No precipitation at 40 min" [ref=e372] [cursor=pointer]
+                  - generic "No precipitation at 41 min" [ref=e373] [cursor=pointer]
+                  - generic "No precipitation at 42 min" [ref=e374] [cursor=pointer]
+                  - generic "No precipitation at 43 min" [ref=e375] [cursor=pointer]
+            - generic [ref=e376]:
+              - generic [ref=e377]: 0-0.5mm/h
+              - generic [ref=e380]: 0.5-2.5mm/h
+              - generic [ref=e383]: 2.5-7.5mm/h
+              - generic [ref=e386]: 7.5+mm/h
+    - generic [ref=e389]:
+      - generic [ref=e392]:
+        - heading "Trusted by" [level=1] [ref=e394]
+        - list [ref=e397]:
+          - listitem [ref=e398]:
+            - img "Microsoft logo" [ref=e399]
+          - listitem [ref=e400]:
+            - img "Gett logo" [ref=e401]
+          - listitem [ref=e402]:
+            - img "Amazon logo" [ref=e403]
+          - listitem [ref=e404]:
+            - img "Airbnb logo" [ref=e405]
+          - listitem [ref=e406]:
+            - img "wb logo" [ref=e407]
+          - listitem [ref=e408]:
+            - img "Google logo" [ref=e409]
+          - listitem [ref=e410]:
+            - img "Bayer logo" [ref=e411]
+          - listitem [ref=e412]:
+            - img "Booking logo" [ref=e413]
+          - listitem [ref=e414]:
+            - img "TomTom logo" [ref=e415]
+          - listitem [ref=e416]:
+            - img "Facebook logo" [ref=e417]
+          - listitem [ref=e418]:
+            - img "Accenture logo" [ref=e419]
+          - listitem [ref=e420]:
+            - img "BP logo" [ref=e421]
+          - listitem [ref=e422]:
+            - img "Pepsico logo" [ref=e423]
+          - listitem [ref=e424]:
+            - img "Barnes & Noble logo" [ref=e425]
+          - listitem [ref=e426]:
+            - img "JCDecaux logo" [ref=e427]
+      - generic [ref=e430]:
+        - generic [ref=e431]:
+          - heading "All-in-One Weather Data, One Simple Call" [level=1] [ref=e432]
+          - paragraph [ref=e435]: Access real-time weather, hourly & daily forecasts, national alerts, and historical data — through a unified timeline-based API. Whether you’re building apps, analytics, AI workflows, dashboards, and enterprise weather solutions, One Call API 4.0 is your all-purpose solution.
+        - list [ref=e436]:
+          - listitem [ref=e437]:
+            - link "Start Free" [ref=e438] [cursor=pointer]:
+              - /url: https://openweathermap.org/price#one_call
+          - listitem [ref=e439]:
+            - link "Explore API Docs" [ref=e440] [cursor=pointer]:
+              - /url: /api/one-call-4
+        - list [ref=e441]:
+          - listitem [ref=e442]:
+            - img "Current Conditions" [ref=e444]
+            - generic [ref=e445]: Current Conditions
+          - listitem [ref=e446]:
+            - img "1-Minute Forecast" [ref=e448]
+            - generic [ref=e449]: 1-Minute Forecast
+          - listitem [ref=e450]:
+            - img "15-Minute Forecast Timeline" [ref=e452]
+            - generic [ref=e453]: 15-Minute Forecast Timeline
+          - listitem [ref=e454]:
+            - img "Hourly Weather Timeline" [ref=e456]
+            - generic [ref=e457]: Hourly Weather Timeline
+          - listitem [ref=e458]:
+            - img "Daily Weather Timeline" [ref=e460]
+            - generic [ref=e461]: Daily Weather Timeline
+          - listitem [ref=e462]:
+            - img "National Weather Alerts" [ref=e464]
+            - generic [ref=e465]: National Weather Alerts
+        - paragraph [ref=e468]: Start with 1,000 free API calls per day. Scale with pay-as-you-call pricing.
+      - generic [ref=e470]:
+        - heading "One platform. Every type of weather data." [level=1] [ref=e472]:
+          - generic [ref=e473]: One platform.
+          - generic [ref=e474]: Every type of weather data.
+        - list [ref=e476]:
+          - listitem [ref=e477]:
+            - generic [ref=e478]:
+              - img "icon clock" [ref=e480]
+              - paragraph [ref=e483]: Current Weather Data
+              - generic [ref=e484]:
+                - paragraph [ref=e486]: Real-time weather data for any location on Earth, delivered with high accuracy and low latency. From live conditions to key atmospheric parameters, get the insights you need, exactly when you need them.
+                - list [ref=e487]:
+                  - listitem [ref=e488]:
+                    - generic [ref=e489]: Live observations & conditions
+                  - listitem [ref=e490]:
+                    - generic [ref=e491]: Global coverage from multiple data sources
+                  - listitem [ref=e492]:
+                    - generic [ref=e493]: Accessible via API or bulk files
+                - list [ref=e494]:
+                  - listitem [ref=e495]:
+                    - link [ref=e496] [cursor=pointer]:
+                      - /url: /price
+                      - text: Subscribe
+                      - img "icon" [ref=e498]
+                  - listitem [ref=e499]:
+                    - link [ref=e500] [cursor=pointer]:
+                      - /url: /api
+                      - text: API docs
+                      - img "icon" [ref=e502]
+          - listitem [ref=e503]:
+            - generic [ref=e504]:
+              - img "icon future clock" [ref=e506]
+              - paragraph [ref=e509]: Forecasted Weather Data
+              - generic [ref=e510]:
+                - paragraph [ref=e512]: Global forecasts from minute-level resolution to long-term outlooks. Whether you need short-term precision or extended climate trends, we deliver the insights to support confident, data-driven decisions.
+                - list [ref=e513]:
+                  - listitem [ref=e514]:
+                    - generic [ref=e515]: Hourly & daily forecasts
+                  - listitem [ref=e516]:
+                    - generic [ref=e517]: Climate models for long-term forecasting
+                  - listitem [ref=e518]:
+                    - generic [ref=e519]: Accessible via API or bulk files
+                - list [ref=e520]:
+                  - listitem [ref=e521]:
+                    - link [ref=e522] [cursor=pointer]:
+                      - /url: /price
+                      - text: Subscribe
+                      - img "icon" [ref=e524]
+                  - listitem [ref=e525]:
+                    - link [ref=e526] [cursor=pointer]:
+                      - /url: /api
+                      - text: API docs
+                      - img "icon" [ref=e528]
+          - listitem [ref=e529]:
+            - generic [ref=e530]:
+              - img "icon past clock" [ref=e532]
+              - paragraph [ref=e535]: Historical Weather Data
+              - generic [ref=e536]:
+                - paragraph [ref=e538]: Explore decades of global weather history, from hourly records to long-term climate trends. Whether you’re analysing past conditions or building predictive models, our archives give you the depth and reliability you need.
+                - list [ref=e539]:
+                  - listitem [ref=e540]:
+                    - generic [ref=e541]: 47+ years of historical data
+                  - listitem [ref=e542]:
+                    - generic [ref=e543]: Hourly & daily archives
+                  - listitem [ref=e544]:
+                    - generic [ref=e545]: Accessible via API or bulk files
+                - list [ref=e546]:
+                  - listitem [ref=e547]:
+                    - link [ref=e548] [cursor=pointer]:
+                      - /url: /price
+                      - text: Subscribe
+                      - img "icon" [ref=e550]
+                  - listitem [ref=e551]:
+                    - link [ref=e552] [cursor=pointer]:
+                      - /url: /api
+                      - text: API docs
+                      - img "icon" [ref=e554]
+      - generic [ref=e556]:
+        - heading "How to work with OpenWeather" [level=1] [ref=e558]
+        - list [ref=e560]:
+          - listitem [ref=e561]:
+            - img "developers" [ref=e564]
+            - generic [ref=e565]:
+              - heading "Weather APIs for developers and businesses" [level=1] [ref=e567]:
+                - generic [ref=e568]: Weather APIs
+                - generic [ref=e569]: for developers and businesses
+              - paragraph [ref=e571]: Access reliable global weather data through clear documentation, quickstart examples, and flexible self-service plans. Integrate current, forecast, and historical data into your products and workflows in minutes.
+              - link "Getting Started" [ref=e573] [cursor=pointer]:
+                - /url: /guide
+          - listitem [ref=e574]:
+            - img "buildings" [ref=e577]
+            - generic [ref=e578]:
+              - heading "Enterprise Service" [level=1] [ref=e580]
+              - paragraph [ref=e583]: Enterprise-grade weather services for organisations with operational and business-critical needs. Access contractual delivery, broader licensing, onboarding support, and account coordination to strengthen planning, continuity, and decision-making at scale.
+              - link "Explore Enterprise Service" [ref=e585] [cursor=pointer]:
+                - /url: https://openweather.co.uk/enterprise-approach
+          - listitem [ref=e586]:
+            - img "port" [ref=e589]
+            - generic [ref=e590]:
+              - heading "Industry Solutions" [level=1] [ref=e592]
+              - paragraph [ref=e595]: Industry-focused weather solutions for organisations managing complex operational and sector-specific risks. Access tailored services, analytics, weather stations and sensors, and expert support to improve resilience, planning, asset protection, and decision-making across critical environments.
+              - link "Explore Industry Solutions" [ref=e597] [cursor=pointer]:
+                - /url: https://openweather.co.uk/industries
+  - contentinfo [ref=e598]:
+    - generic [ref=e599]:
+      - generic [ref=e600]:
+        - generic [ref=e601]:
+          - heading "Build smarter, plan better with the world’s most flexible weather data platform" [level=1] [ref=e602]:
+            - generic [ref=e603]: Build smarter, plan better with the
+            - generic [ref=e604]: world’s most flexible
+            - generic [ref=e605]: weather data platform
+          - paragraph [ref=e607]: Build smarter, plan better with the world’s most flexible weather data platform
+        - list [ref=e608]:
+          - listitem [ref=e609]:
+            - link "Get API Key" [ref=e610] [cursor=pointer]:
+              - /url: https://home.openweathermap.org/users/sign_in
+          - listitem [ref=e611]:
+            - link "Explore API Docs" [ref=e612] [cursor=pointer]:
+              - /url: /api/one-call-4
+      - generic [ref=e613]:
+        - generic [ref=e615]:
+          - paragraph [ref=e616]: Products
+          - list [ref=e618]:
+            - listitem [ref=e619]:
+              - link "Current and Forecast APIs" [ref=e620] [cursor=pointer]:
+                - /url: /api#current
+            - listitem [ref=e621]:
+              - link "Historical Weather Data" [ref=e622] [cursor=pointer]:
+                - /url: /api?filter=historical#collections
+            - listitem [ref=e623]:
+              - link "Weather Maps" [ref=e624] [cursor=pointer]:
+                - /url: /api#maps
+            - listitem [ref=e625]:
+              - link "Weather Dashboard" [ref=e626] [cursor=pointer]:
+                - /url: https://dashboard.openweather.co.uk/
+            - listitem [ref=e627]:
+              - link "Widgets" [ref=e628] [cursor=pointer]:
+                - /url: /widgets-constructor
+        - generic [ref=e630]:
+          - paragraph [ref=e631]: Subscription
+          - list [ref=e633]:
+            - listitem [ref=e634]:
+              - link "How to start" [ref=e635] [cursor=pointer]:
+                - /url: /appid
+            - listitem [ref=e636]:
+              - link "Pricing" [ref=e637] [cursor=pointer]:
+                - /url: /price
+            - listitem [ref=e638]:
+              - link "Subscribe for free" [ref=e639] [cursor=pointer]:
+                - /url: https://home.openweathermap.org/
+            - listitem [ref=e640]:
+              - link "FAQ" [ref=e641] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=e643]:
+          - paragraph [ref=e644]: Technologies
+          - list [ref=e646]:
+            - listitem [ref=e647]:
+              - link "Our technology" [ref=e648] [cursor=pointer]:
+                - /url: /technology
+            - listitem [ref=e649]:
+              - link "Accuracy and quality of weather data" [ref=e650] [cursor=pointer]:
+                - /url: https://openweather.co.uk/accuracy-and-quality
+            - listitem [ref=e651]:
+              - link "Connect your weather station" [ref=e652] [cursor=pointer]:
+                - /url: /stations
+        - generic [ref=e654]:
+          - link "Offices" [ref=e655] [cursor=pointer]:
+            - /url: /about/our-offices
+          - list [ref=e657]:
+            - listitem [ref=e658]:
+              - paragraph [ref=e659]: London, UK
+              - paragraph [ref=e660]: "The Gherkin, 30 St Mary`s Axe, The City Of London, London EC3A 8BF, United Kingdom"
+            - listitem [ref=e661]:
+              - paragraph [ref=e662]: Paphos, Cyprus
+              - paragraph [ref=e663]: Gladstonos 12-14, Office 1 Hugge Space, Paphos 8046, Cyprus
+            - listitem [ref=e664]:
+              - paragraph [ref=e665]: Delaware, US
+              - paragraph [ref=e666]: 16192 Coastal Highway, Lewes, Delaware 19958, United States
+      - generic [ref=e667]:
+        - generic [ref=e668]:
+          - list [ref=e669]:
+            - listitem [ref=e670]:
+              - link [ref=e671] [cursor=pointer]:
+                - /url: https://apps.apple.com/gb/app/openweather/id1535923697
+                - img "App Store" [ref=e672]
+            - listitem [ref=e673]:
+              - link [ref=e674] [cursor=pointer]:
+                - /url: https://play.google.com/store/apps/details?id=uk.co.openweather
+                - img "Google Play" [ref=e675]
+          - list [ref=e676]:
+            - listitem [ref=e677]:
+              - link [ref=e678] [cursor=pointer]:
+                - /url: https://www.instagram.com/openweathermap?igsh=OTRsOWs1aDh2bmNu
+                - img "Instagram icon" [ref=e679]
+            - listitem [ref=e680]:
+              - link [ref=e681] [cursor=pointer]:
+                - /url: https://www.facebook.com/groups/270748973021342
+                - img "Facebook icon" [ref=e682]
+            - listitem [ref=e683]:
+              - link [ref=e684] [cursor=pointer]:
+                - /url: https://t.me/openweathermap
+                - img "Telegram icon" [ref=e685]
+            - listitem [ref=e686]:
+              - link [ref=e687] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/9816754
+                - img "LinkedIn icon" [ref=e688]
+            - listitem [ref=e689]:
+              - link [ref=e690] [cursor=pointer]:
+                - /url: https://medium.com/@openweathermap
+                - img "Medium icon" [ref=e691]
+            - listitem [ref=e692]:
+              - link [ref=e693] [cursor=pointer]:
+                - /url: https://github.com/openweathermap
+                - img "GitHub icon" [ref=e694]
+            - listitem [ref=e695]:
+              - link [ref=e696] [cursor=pointer]:
+                - /url: https://discord.com/invite/YyPZCXb4Jq
+                - img "Discord icon" [ref=e697]
+          - list [ref=e698]:
+            - listitem [ref=e699]:
+              - img "ISO 9001" [ref=e700]
+            - listitem [ref=e701]:
+              - img "ISO 27001" [ref=e702]
+            - listitem [ref=e703]:
+              - img "CNB Business Logo" [ref=e704]
+            - listitem [ref=e705]:
+              - img "RMets Logo" [ref=e706]
+            - listitem [ref=e707]:
+              - img "ESPO logo" [ref=e708]
+            - listitem [ref=e709]:
+              - img "LCRIG logo" [ref=e710]
+        - generic [ref=e711]:
+          - paragraph [ref=e712]: Company
+          - paragraph [ref=e714]:
+            - strong [ref=e716]: OpenWeather
+            - text: is a London-based weather intelligence company serving enterprises, developers, businesses, and researchers worldwide. Through its developer business, the company provides global weather data and forecasting services via fast, reliable APIs, delivering historical, current, and forecast weather data for any location worldwide. Combining advanced meteorology, AI-enhanced forecasting models, and scalable data infrastructure, OpenWeather helps customers integrate weather intelligence into applications, services, and operational workflows.
+      - generic [ref=e717]:
+        - generic [ref=e718]:
+          - text: Supplier of Achilles UVDB community
+          - generic [ref=e719]: © 2012 - 2026 OpenWeather ® All rights reserved
+        - list [ref=e720]:
+          - listitem [ref=e721]:
+            - link "Terms & conditions of sale" [ref=e722] [cursor=pointer]:
+              - /url: https://openweather.co.uk/api/files/file/OpenWeather_T%26C_of_sale.pdf
+          - listitem [ref=e723]:
+            - link "Website terms & conditions" [ref=e724] [cursor=pointer]:
+              - /url: https://openweather.co.uk/api/files/file/Openweather_website_terms_and_conditions_of_use.pdf
+          - listitem [ref=e725]:
+            - link "Privacy policy" [ref=e726] [cursor=pointer]:
+              - /url: https://openweather.co.uk/privacy-policy
+  - button "Open chat" [ref=e727] [cursor=pointer]
+  - generic [ref=e728]:
+    - paragraph [ref=e730]: We use cookies to personalize content and to analyze our traffic. Please decide if you are willing to accept cookies from our website.
+    - generic [ref=e731]:
+      - link "Advanced Settings" [ref=e733] [cursor=pointer]:
+        - /url: /cookies
+      - generic [ref=e734]:
+        - button "Decline" [ref=e735]
+        - button "Accept" [ref=e736]
+  - alert [ref=e737]

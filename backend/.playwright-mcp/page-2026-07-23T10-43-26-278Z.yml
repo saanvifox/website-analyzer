@@ -1,0 +1,50 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - separator [ref=f3e3]
+    - iframe [ref=f3e8]:
+      - generic [ref=f4e2]:
+        - generic [ref=f4e3]:
+          - checkbox "I'm not a robot" [ref=f4e7]
+          - generic [ref=f4e9]: I'm not a robot
+        - generic [ref=f4e12]: reCAPTCHA
+    - separator [ref=f3e9]
+    - generic [ref=f3e10]:
+      - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+      - link "Why did this happen?" [ref=f3e11] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f3e12]: "IP address: 2401:4900:88b2:83f7:c139:bfbf:10bc:8359Time: 2026-07-23T10:43:19ZURL: https://www.google.com/search?q=Mumbai+weather&sca_esv=00274532949d0f23&source=hp&ei=QvBhaq3JMomQseMP54aFoAk&iflsig=ABILxe8AAAAAamH-UsR29wVfW0JoiBmL11QwxaOzT3iq&ved=0ahUKEwit8t7izuiVAxUJSGwGHWdDAZQQ4dUDCA4&uact=5&oq=Mumbai+weather&gs_lp=Egdnd3Mtd2l6Ig5NdW1iYWkgd2VhdGhlckgKUABYAHAAeACQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgCgAgCYAwCSBwCgBwCyBwC4BwDCBwDIBwCACAE&sclient=gws-wiz&sei=RfBhateaH_fOkPIPxInCuAU"
+  - iframe [active] [ref=f3e16]:
+    - dialog [ref=f7e3]:
+      - generic [ref=f7e4]:
+        - generic [ref=f7e79]:
+          - text: Select all squares with
+          - strong [ref=f7e80]: traffic lights
+          - generic [ref=f7e81]: If there are none, click skip
+        - table [ref=f7e82]:
+          - rowgroup [ref=f7e83]:
+            - row [ref=f7e84]:
+              - button [ref=f7e85]
+              - button [ref=f7e88]
+              - button [ref=f7e91]
+              - button [ref=f7e94]
+            - row [ref=f7e97]:
+              - button [ref=f7e98]
+              - button [ref=f7e101]
+              - button [ref=f7e104]
+              - button [ref=f7e107]
+            - row [ref=f7e110]:
+              - button [ref=f7e111]
+              - button [ref=f7e114]
+              - button [ref=f7e117]
+              - button [ref=f7e120]
+            - row [ref=f7e123]:
+              - button [ref=f7e124]
+              - button [ref=f7e127]
+              - button [ref=f7e130]
+              - button [ref=f7e133]
+      - generic [ref=f7e69]:
+        - generic [ref=f7e70]:
+          - button "Get a new challenge" [ref=f7e72] [cursor=pointer]
+          - button "Get an audio challenge" [ref=f7e74] [cursor=pointer]
+          - button "Help" [ref=f7e76] [cursor=pointer]
+        - button "Skip" [active] [ref=f7e78] [cursor=pointer]

@@ -1,0 +1,42 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - separator [ref=f3e3]
+    - iframe [ref=f3e8]:
+      - generic [ref=f4e2]:
+        - generic [ref=f4e3]:
+          - checkbox "I'm not a robot" [ref=f4e7]
+          - generic [ref=f4e9]: I'm not a robot
+        - generic [ref=f4e12]: reCAPTCHA
+    - separator [ref=f3e9]
+    - generic [ref=f3e10]:
+      - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+      - link "Why did this happen?" [ref=f3e11] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f3e12]: "IP address: 2401:4900:88b2:83f7:c139:bfbf:10bc:8359Time: 2026-07-23T10:43:19ZURL: https://www.google.com/search?q=Mumbai+weather&sca_esv=00274532949d0f23&source=hp&ei=QvBhaq3JMomQseMP54aFoAk&iflsig=ABILxe8AAAAAamH-UsR29wVfW0JoiBmL11QwxaOzT3iq&ved=0ahUKEwit8t7izuiVAxUJSGwGHWdDAZQQ4dUDCA4&uact=5&oq=Mumbai+weather&gs_lp=Egdnd3Mtd2l6Ig5NdW1iYWkgd2VhdGhlckgKUABYAHAAeACQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgCgAgCYAwCSBwCgBwCyBwC4BwDCBwDIBwCACAE&sclient=gws-wiz&sei=RfBhateaH_fOkPIPxInCuAU"
+  - iframe [active] [ref=f3e16]:
+    - dialog [ref=f7e136]:
+      - generic [ref=f7e137]:
+        - generic [ref=f7e140]:
+          - text: Select all images with a
+          - strong [ref=f7e141]: bus
+          - generic [ref=f7e142]: Click verify once there are none left.
+        - table [ref=f7e145]:
+          - rowgroup [ref=f7e146]:
+            - row [ref=f7e147]:
+              - button [ref=f7e148]
+              - button [ref=f7e151]
+              - button [ref=f7e154]
+            - row [ref=f7e157]:
+              - button [ref=f7e158]
+              - button [ref=f7e161]
+              - button [ref=f7e164]
+            - row [ref=f7e167]:
+              - button [ref=f7e168]
+              - button [ref=f7e171]
+              - button [ref=f7e174]
+      - generic [ref=f7e180]:
+        - generic [ref=f7e181]:
+          - button "Get a new challenge" [ref=f7e183] [cursor=pointer]
+          - button "Get an audio challenge" [ref=f7e185] [cursor=pointer]
+          - button "Help" [ref=f7e187] [cursor=pointer]
+        - button "Verify" [ref=f7e189] [cursor=pointer]

@@ -1,0 +1,5 @@
+- generic [active] [ref=f25e1]:
+  - heading "Access Denied" [level=1] [ref=f25e2]
+  - text: You don't have permission to access "http://www.zara.com/us/en/womens-shoes.html" on this server.
+  - paragraph [ref=f25e3]: "Reference #18.65a5c117.1784799017.9fd2251"
+  - paragraph [ref=f25e4]: https://errors.edgesuite.net/18.65a5c117.1784799017.9fd2251

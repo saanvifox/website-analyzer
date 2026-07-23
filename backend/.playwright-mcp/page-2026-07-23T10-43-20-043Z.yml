@@ -1,0 +1,14 @@
+- generic [ref=f3e2]:
+  - separator [ref=f3e3]
+  - iframe [ref=f3e8]:
+    - generic [ref=f4e2]:
+      - generic [ref=f4e3]:
+        - checkbox "I'm not a robot" [ref=f4e7]
+        - generic [ref=f4e9]: I'm not a robot
+      - generic [ref=f4e12]: reCAPTCHA
+  - separator [ref=f3e9]
+  - generic [ref=f3e10]:
+    - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+    - link "Why did this happen?" [ref=f3e11] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=f3e12]: "IP address: 2401:4900:88b2:83f7:c139:bfbf:10bc:8359Time: 2026-07-23T10:43:19ZURL: https://www.google.com/search?q=Mumbai+weather&sca_esv=00274532949d0f23&source=hp&ei=QvBhaq3JMomQseMP54aFoAk&iflsig=ABILxe8AAAAAamH-UsR29wVfW0JoiBmL11QwxaOzT3iq&ved=0ahUKEwit8t7izuiVAxUJSGwGHWdDAZQQ4dUDCA4&uact=5&oq=Mumbai+weather&gs_lp=Egdnd3Mtd2l6Ig5NdW1iYWkgd2VhdGhlckgKUABYAHAAeACQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgCgAgCYAwCSBwCgBwCyBwC4BwDCBwDIBwCACAE&sclient=gws-wiz&sei=RfBhateaH_fOkPIPxInCuAU"

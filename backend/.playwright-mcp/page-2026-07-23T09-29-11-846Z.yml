@@ -1,0 +1,48 @@
+- generic [active] [ref=f13e1]:
+  - banner [ref=f13e2]:
+    - button "Skip to content" [ref=f13e3] [cursor=pointer]
+    - button "Accessibility Feedback" [ref=f13e6] [cursor=pointer]
+    - generic [ref=f13e9]:
+      - link [ref=f13e10] [cursor=pointer]:
+        - /url: /?FORM=Z9FD1
+        - heading "Back to Bing search" [level=1] [ref=f13e11]
+      - search [ref=f13e12]:
+        - button "Search" [ref=f13e15] [cursor=pointer]
+        - searchbox "Enter your search here - Search suggestions will show as you type" [ref=f13e16]: zara womens heels types
+        - button "Clear text" [ref=f13e18]
+        - button "Search using an image" [ref=f13e22] [cursor=pointer]
+    - complementary "Account Rewards and Preferences" [ref=f13e24]:
+      - button "Microsoft Rewards"
+      - link "Sign in" [ref=f13e25] [cursor=pointer]:
+        - /url: javascript:void(0)
+    - navigation "Search Filter" [ref=f13e27]:
+      - list [ref=f13e28]:
+        - listitem [ref=f13e29]:
+          - link "All" [ref=f13e30] [cursor=pointer]:
+            - /url: /?scope=web&FORM=HDRSC1
+        - listitem [ref=f13e31]:
+          - link "Search" [ref=f13e32] [cursor=pointer]:
+            - /url: /copilotsearch?q=zara+womens+heels+types&FORM=CSSCOP
+        - listitem [ref=f13e35]:
+          - link "Images" [ref=f13e36] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=9a0ad79f783035f3a02f471f7ca46445c6ccb64341d092b6752745f43ecb36e7JmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1L2ltYWdlcy9zZWFyY2g_cT16YXJhK3dvbWVucytoZWVscyt0eXBlcyZGT1JNPUhEUlNDMg&ntb=1
+        - listitem [ref=f13e37]:
+          - link "Videos" [ref=f13e38] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=0e2f74813196963a281cfc3bb1a377d2365eaaf1d80302695a17f2c18f724e54JmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1L3ZpZGVvcy9zZWFyY2g_cT16YXJhK3dvbWVucytoZWVscyt0eXBlcyZGT1JNPUhEUlNDMw&ntb=1
+        - listitem [ref=f13e39]:
+          - link "Maps" [ref=f13e40] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=0a2000fdf103309f1ed3626a25d1c0148f54447e26110307bc9b3e27ed8a00abJmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1L21hcHM_cT16YXJhK3dvbWVucytoZWVscyt0eXBlcyZGT1JNPUhEUlNDNA&ntb=1
+        - listitem [ref=f13e41]:
+          - link "News" [ref=f13e42] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=b1452ee27e52f775a62192f961aa97af9b6ed503d117c2241befa1bda2a4a44dJmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1L25ld3Mvc2VhcmNoP3E9emFyYSt3b21lbnMraGVlbHMrdHlwZXMmRk9STT1IRFJTQzY&ntb=1
+        - listitem [ref=f13e43]:
+          - button [ref=f13e44] [cursor=pointer]
+  - contentinfo [ref=f13e48]:
+    - generic [ref=f13e49]:
+      - list:
+        - listitem [ref=f13e50]:
+          - link "Privacy" [ref=f13e51] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=67848b62a970d2a79a60c4bb37acaeebb3fd2a073bc1ac652b44703fd0e4b0f6JmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSWQ9NTIxODM5&ntb=1
+        - listitem [ref=f13e52]:
+          - link "Terms" [ref=f13e53] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=e93f3a1da430535bd1a8bc5ebfc683739ee39cce16486c5b418775365409e62cJmltdHM9MTc4NDc2NDgwMA&ptn=3&ver=2&hsh=4&fclid=1a065dc9-ae01-6062-3ae4-4a56af6c61bc&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSUQ9MjQ2MzM4&ntb=1

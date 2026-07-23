@@ -1,8 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-
-from llm import choose_starting_url
 from agent import Agent
 
 
@@ -29,17 +27,21 @@ def home():
 
 @app.post("/analyze")
 async def analyze(request: AnalyzeRequest):
-    agent = Agent()
+   
 
     url = request.url.strip()
 
     if not url:
-        url = choose_starting_url(request.task)
+        raise HTTPException(
+            status_code=400,
+            detail="A URL is required.",
+        )
+    agent = Agent()
 
-    summary = await agent.run(
-        url,
-        request.task,
-    )
+    summary = await agent.run(  
+        url,  
+        request.task, 
+          )
 
     return {
         "url": url,

@@ -1,0 +1,14 @@
+- generic [ref=f43e2]:
+  - separator [ref=f43e3]
+  - iframe [ref=f43e8]:
+    - generic [ref=f44e2]:
+      - generic [ref=f44e3]:
+        - checkbox "I'm not a robot" [ref=f44e7]
+        - generic [ref=f44e9]: I'm not a robot
+      - generic [ref=f44e12]: reCAPTCHA
+  - separator [ref=f43e9]
+  - generic [ref=f43e10]:
+    - text: About this page Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot.
+    - link "Why did this happen?" [ref=f43e11] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=f43e12]: "IP address: 2401:4900:88b2:83f7:d481:450a:57ee:b2adTime: 2026-07-23T09:32:28ZURL: https://www.google.com/search?q=zara+womens+heels+types+styles&sei=q99hareSIrXjkPIPgezQiQQ"

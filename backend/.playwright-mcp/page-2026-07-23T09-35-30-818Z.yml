@@ -1,0 +1,5 @@
+- generic [active] [ref=f50e1]:
+  - heading "Access Denied" [level=1] [ref=f50e2]
+  - text: You don't have permission to access "http://www.zara.com/" on this server.
+  - paragraph [ref=f50e3]: "Reference #18.5ea5c117.1784799330.4f8d9b40"
+  - paragraph [ref=f50e4]: https://errors.edgesuite.net/18.5ea5c117.1784799330.4f8d9b40
