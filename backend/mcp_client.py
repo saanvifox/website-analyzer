@@ -11,8 +11,9 @@ class PlaywrightMCPClient:
 
     async def start(self):
         server = StdioServerParameters(
-            command="npx.cmd",
+            command="npx",
             args=[
+                "-y",
                 "@playwright/mcp@latest",
                 "--headless",
                 "--isolated",
@@ -41,7 +42,6 @@ class PlaywrightMCPClient:
         )
 
         await self.session.initialize()
-
     async def list_tools(self):
         if self.session is None:
             raise RuntimeError(
