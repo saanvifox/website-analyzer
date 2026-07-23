@@ -11,10 +11,8 @@ class PlaywrightMCPClient:
 
     async def start(self):
         server = StdioServerParameters(
-            command="npx",
+            command="playwright-mcp",
             args=[
-                "-y",
-                "@playwright/mcp@latest",
                 "--headless",
                 "--isolated",
                 "--snapshot-mode",
@@ -23,6 +21,7 @@ class PlaywrightMCPClient:
                 "none",
                 "--image-responses",
                 "omit",
+               
             ],
         )
 
