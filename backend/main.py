@@ -19,10 +19,10 @@ class AnalyzeRequest(BaseModel):
     url: str
     task: str
 
-
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def home():
     return {"message": "Hello World"}
+
 
 
 @app.post("/analyze")

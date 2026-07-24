@@ -19,7 +19,7 @@ class PlaywrightMCPClient:
         "chrome",
         "--no-sandbox",
         "--snapshot-mode",
-        "full",
+        "incremental",
         "--codegen",
         "none",
         "--image-responses",
