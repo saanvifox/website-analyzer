@@ -27,7 +27,7 @@ def home():
 
 @app.post("/analyze")
 async def analyze(request: AnalyzeRequest):
-   
+    print("ANALYZE REQUEST STARTED", flush=True)
 
     url = request.url.strip()
 
@@ -36,12 +36,15 @@ async def analyze(request: AnalyzeRequest):
             status_code=400,
             detail="A URL is required.",
         )
+
     agent = Agent()
 
-    summary = await agent.run(  
-        url,  
-        request.task, 
-          )
+    summary = await agent.run(
+        url,
+        request.task,
+    )
+
+    print("ANALYZE REQUEST FINISHED:", summary[:200], flush=True)
 
     return {
         "url": url,
