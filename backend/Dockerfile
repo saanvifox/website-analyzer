@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/playwright/python:v1.61.0-noble
 
 WORKDIR /app
 
-# Install Node.js and npm/npx
+# Install Node.js and npm.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -17,26 +17,31 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Confirm Node and npx exist during build
-RUN node --version && npm --version && npx --version
+RUN node --version \
+    && npm --version \
+    && npx --version
 
+# Install Python dependencies first for better Docker caching.
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright MCP server
-RUN npm install -g @playwright/mcp@latest
+# Install Playwright MCP locally inside /app.
+# Pin the version currently appearing in your logs.
+RUN npm init -y \
+    && npm install --save-exact @playwright/mcp@0.0.78
 
-# Force install the exact browser MCP needs + debug output
-RUN npx @playwright/mcp install-browser chrome-for-testing --force && \
-    echo "=== Browser install completed ===" && \
-    ls -la /root/.cache/ms-playwright || echo "Cache folder not found" && \
-    npx @playwright/mcp list-browsers || echo "No list-browsers command"
+# Confirm that MCP can run without downloading anything.
+RUN npx --no-install @playwright/mcp --help
 
-# Also install regular playwright browsers as fallback
-RUN npx playwright install chrome --with-deps
+# The Microsoft Playwright base image already contains browser
+# dependencies, but install the browser expected by this MCP version.
+RUN npx playwright install chromium
 
 COPY . .
+
+# Ensure screenshots can be created and served by FastAPI.
+RUN mkdir -p /app/screenshots
 
 ENV PYTHONUNBUFFERED=1
 

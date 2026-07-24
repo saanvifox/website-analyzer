@@ -24,11 +24,12 @@ class PlaywrightMCPClient:
         server_params = StdioServerParameters(
             command="npx",
             args=[
-                "@playwright/mcp@latest",
+                "--no-install"
+                "@playwright/mcp",
                 "--headless",
                 "--isolated",
                 "--snapshot-mode",
-                "full",
+                "incremental",
                 "--codegen",
                 "none",
                 "--image-responses",
