@@ -24,11 +24,14 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright MCP during the image build
+# Install Playwright MCP
 RUN npm install -g @playwright/mcp@latest
+
+# Install the browser Playwright MCP is requesting
+RUN npx @playwright/mcp install-browser chrome-for-testing
 
 COPY . .
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8001}"]
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
