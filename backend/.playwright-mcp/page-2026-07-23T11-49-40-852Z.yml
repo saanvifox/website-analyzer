@@ -1,0 +1,444 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e8]:
+      - heading [level=1] [ref=e781]:
+        - link "Healthline" [ref=e783] [cursor=pointer]:
+          - /url: https://www.healthline.com/
+          - img "Healthline" [ref=e784]
+      - menubar [ref=e16]:
+        - menuitem "Expand Health Conditions options" [ref=e17] [cursor=pointer]: Health Conditions
+        - text:  
+        - menuitem "Expand Wellness options" [ref=e20] [cursor=pointer]: Wellness
+        - text:   
+        - menuitem "Expand Tools options" [ref=e23] [cursor=pointer]: Tools
+        - text: 
+        - menuitem "Expand Featured options" [ref=e26] [cursor=pointer]: Featured
+        - text: 
+        - menuitem "Expand Connect options" [ref=e29] [cursor=pointer]: Connect
+        - text:  v     
+      - button "Open Healthline Search" [ref=e35] [cursor=pointer]
+      - button "Click to Subscribe to our Newsletter" [ref=e39] [cursor=pointer]:
+        - generic [ref=e40]: Subscribe
+      - button "Sign in" [ref=e42] [cursor=pointer]
+    - generic [ref=e53]:
+      - generic [ref=e61]:
+        - generic [ref=e62]: Medically reviewed
+        - generic [ref=e63]: content
+      - generic [ref=e77]:
+        - generic [ref=e78]: "130"
+        - generic [ref=e79]: medical reviewers in network
+      - generic [ref=e87]:
+        - generic [ref=e88]: 19 years of
+        - generic [ref=e89]: experience
+      - generic [ref=e97]:
+        - generic [ref=e98]: 50 million
+        - generic [ref=e99]: monthly readers
+      - generic [ref=e107]:
+        - generic [ref=e108]: Medically reviewed
+        - generic [ref=e109]: content
+      - generic [ref=e123]:
+        - generic [ref=e124]: "130"
+        - generic [ref=e125]: medical reviewers in network
+      - generic [ref=e133]:
+        - generic [ref=e134]: 19 years of
+        - generic [ref=e135]: experience
+      - generic [ref=e143]:
+        - generic [ref=e144]: 50 million
+        - generic [ref=e145]: monthly readers
+      - generic [ref=e153]:
+        - generic [ref=e154]: Medically reviewed
+        - generic [ref=e155]: content
+      - generic [ref=e169]:
+        - generic [ref=e170]: "130"
+        - generic [ref=e171]: medical reviewers in network
+      - generic [ref=e179]:
+        - generic [ref=e180]: 19 years of
+        - generic [ref=e181]: experience
+      - generic [ref=e189]:
+        - generic [ref=e190]: 50 million
+        - generic [ref=e191]: monthly readers
+      - generic [ref=e199]:
+        - generic [ref=e200]: Medically reviewed
+        - generic [ref=e201]: content
+      - generic [ref=e215]:
+        - generic [ref=e216]: "130"
+        - generic [ref=e217]: medical reviewers in network
+      - generic [ref=e225]:
+        - generic [ref=e226]: 19 years of
+        - generic [ref=e227]: experience
+      - generic [ref=e235]:
+        - generic [ref=e236]: 50 million
+        - generic [ref=e237]: monthly readers
+      - generic [ref=e245]:
+        - generic [ref=e246]: Medically reviewed
+        - generic [ref=e247]: content
+      - generic [ref=e261]:
+        - generic [ref=e262]: "130"
+        - generic [ref=e263]: medical reviewers in network
+      - generic [ref=e271]:
+        - generic [ref=e272]: 19 years of
+        - generic [ref=e273]: experience
+      - generic [ref=e281]:
+        - generic [ref=e282]: 50 million
+        - generic [ref=e283]: monthly readers
+      - generic [ref=e291]:
+        - generic [ref=e292]: Medically reviewed
+        - generic [ref=e293]: content
+      - generic [ref=e307]:
+        - generic [ref=e308]: "130"
+        - generic [ref=e309]: medical reviewers in network
+      - generic [ref=e317]:
+        - generic [ref=e318]: 19 years of
+        - generic [ref=e319]: experience
+      - generic [ref=e327]:
+        - generic [ref=e328]: 50 million
+        - generic [ref=e329]: monthly readers
+      - generic [ref=e337]:
+        - generic [ref=e338]: Medically reviewed
+        - generic [ref=e339]: content
+      - generic [ref=e353]:
+        - generic [ref=e354]: "130"
+        - generic [ref=e355]: medical reviewers in network
+      - generic [ref=e363]:
+        - generic [ref=e364]: 19 years of
+        - generic [ref=e365]: experience
+      - generic [ref=e373]:
+        - generic [ref=e374]: 50 million
+        - generic [ref=e375]: monthly readers
+      - generic [ref=e383]:
+        - generic [ref=e384]: Medically reviewed
+        - generic [ref=e385]: content
+      - generic [ref=e399]:
+        - generic [ref=e400]: "130"
+        - generic [ref=e401]: medical reviewers in network
+      - generic [ref=e409]:
+        - generic [ref=e410]: 19 years of
+        - generic [ref=e411]: experience
+      - generic [ref=e419]:
+        - generic [ref=e420]: 50 million
+        - generic [ref=e421]: monthly readers
+    - generic [ref=e422]:
+      - generic [ref=e424]:
+        - generic [ref=e425]:
+          - link [ref=e427] [cursor=pointer]:
+            - /url: /health-news/early-bird-dinner-tiktok-sleep-hack
+          - generic [ref=e429]:
+            - generic [ref=e430]:
+              - generic [ref=e431]: Sleep
+              - 'link "‘Early Bird Dinner’: Does the TikTok Sleep Hack Actually Work?" [ref=e432] [cursor=pointer]':
+                - /url: /health-news/early-bird-dinner-tiktok-sleep-hack
+            - paragraph [ref=e433]: TikTokers claim that eating earlier can improve sleep quality. Do experts agree?
+        - generic [ref=e434]:
+          - heading "Trending" [level=2] [ref=e439]
+          - list [ref=e440]:
+            - listitem [ref=e441]:
+              - link [ref=e443] [cursor=pointer]:
+                - /url: /nutrition/dietitian-guide-to-healthy-eating-and-managing-hunger-levels
+              - generic [ref=e445]:
+                - generic [ref=e446]: Weight Loss
+                - 'link "Always Hungry While Losing Weight: A Dietitian Explains What to Do" [ref=e447] [cursor=pointer]':
+                  - /url: /nutrition/dietitian-guide-to-healthy-eating-and-managing-hunger-levels
+            - listitem [ref=e448]:
+              - link [ref=e450] [cursor=pointer]:
+                - /url: /health/home-remedies
+              - generic [ref=e452]:
+                - generic [ref=e453]: Wellness
+                - link "These 9 Home Remedies Are Actually Backed by Science" [ref=e454] [cursor=pointer]:
+                  - /url: /health/home-remedies
+            - listitem [ref=e455]:
+              - link [ref=e457] [cursor=pointer]:
+                - /url: /recipes/summer-grilling-recipes
+              - generic [ref=e459]:
+                - generic [ref=e460]: Nutrition
+                - link "High Protein and High Fiber Summer Recipes You Can Make on the Grill" [ref=e461] [cursor=pointer]:
+                  - /url: /recipes/summer-grilling-recipes
+            - listitem [ref=e462]:
+              - link [ref=e464] [cursor=pointer]:
+                - /url: /health-news/wildfire-smoke-air-quality-protect-yourself
+              - generic [ref=e466]:
+                - generic [ref=e467]: Lung Health
+                - link "8 Ways to Protect Yourself From Wildfire Smoke" [ref=e468] [cursor=pointer]:
+                  - /url: /health-news/wildfire-smoke-air-quality-protect-yourself
+      - generic [ref=e471]:
+        - generic [ref=e472]:
+          - heading "The best of health and wellness" [level=2] [ref=e473]
+          - paragraph [ref=e474]: We do the research so you don't have to. Stay in the know with the latest in health and wellness.
+        - generic [ref=e476]:
+          - generic [ref=e477]:
+            - textbox "Enter your email" [ref=e480]
+            - button "Join now" [ref=e481] [cursor=pointer]
+          - paragraph [ref=e483]:
+            - text: Your
+            - link "privacy" [ref=e484] [cursor=pointer]:
+              - /url: /about/privacy-notice
+            - text: is important to us.
+      - generic [ref=e486]:
+        - generic [ref=e487]:
+          - heading "Explore by health topic" [level=2] [ref=e489]
+          - link "View all Explore by health topic" [ref=e490] [cursor=pointer]:
+            - /url: https://www.healthline.com/directory/topics
+            - text: View all
+        - region "Carousel" [ref=e493]:
+          - generic [ref=e494]:
+            - link "Carousel item 1" [ref=e495] [cursor=pointer]:
+              - /url: https://www.healthline.com/anxiety-and-depression
+              - generic [ref=e497]: Anxiety & Depression
+            - link "Carousel item 2" [ref=e498] [cursor=pointer]:
+              - /url: https://www.healthline.com/digestive-health
+              - generic [ref=e500]: Digestive Health
+            - link "Carousel item 3" [ref=e501] [cursor=pointer]:
+              - /url: https://www.healthline.com/heart-health
+              - generic [ref=e503]: Heart Health
+            - link "Carousel item 4" [ref=e504] [cursor=pointer]:
+              - /url: https://www.healthline.com/menopause
+              - generic [ref=e506]: Menopause
+            - link "Carousel item 5" [ref=e507] [cursor=pointer]:
+              - /url: https://www.healthline.com/type-2-diabetes
+              - generic [ref=e509]: Type 2 Diabetes
+            - link "Carousel item 6" [ref=e510] [cursor=pointer]:
+              - /url: https://www.healthline.com/weight-management
+              - generic [ref=e512]: Weight Management
+        - generic [ref=e513]:
+          - generic [ref=e514]:
+            - button "Go to slide 1" [ref=e515] [cursor=pointer]
+            - button "Go to slide 2" [ref=e516] [cursor=pointer]
+            - button "Go to slide 3" [ref=e517] [cursor=pointer]
+            - button "Go to slide 4" [ref=e518] [cursor=pointer]
+          - generic [ref=e519]:
+            - button "Previous slide" [disabled] [ref=e520]
+            - button "Next slide" [ref=e523] [cursor=pointer]
+      - generic [ref=e526]:
+        - generic [ref=e527]: Healthline Tools
+        - generic [ref=e530]:
+          - generic [ref=e532]:
+            - generic [ref=e533]:
+              - generic [ref=e534]: Healthy eating, simplified
+              - paragraph [ref=e536]: Take charge of your nutrition with guidance on meal planning, diets, supplements, and more from our dietitians and nutritionists.
+            - link "Visit Nutrition Hub" [ref=e538] [cursor=pointer]:
+              - /url: https://www.healthline.com/nutrition
+          - generic [ref=e539]:
+            - generic [ref=e541]:
+              - generic [ref=e542]:
+                - generic [ref=e543]: Recipe Hub
+                - generic [ref=e544]: Try 400+ recipes for different dietary preferences
+              - link "Go to Recipe Hub" [ref=e546] [cursor=pointer]:
+                - /url: https://www.healthline.com/recipes
+            - generic [ref=e550]:
+              - generic [ref=e551]:
+                - generic [ref=e552]: Macronutrient Calculator
+                - generic [ref=e553]: Calculate your daily carb, protein, and fat goals
+              - link "Go to Macronutrient Calculator" [ref=e555] [cursor=pointer]:
+                - /url: https://www.healthline.com/health/nutrition/macro-calculator
+            - generic [ref=e559]:
+              - generic [ref=e560]:
+                - generic [ref=e561]: Calorie Calculator
+                - generic [ref=e562]: Learn how many calories you need for your weight goals
+              - link "Go to Calorie Calculator" [ref=e564] [cursor=pointer]:
+                - /url: https://www.healthline.com/nutrition/how-many-calories-per-day
+      - generic [ref=e568]:
+        - generic [ref=e570]:
+          - generic [ref=e571]:
+            - generic [ref=e572]: "Drug Directory: A to Z"
+            - paragraph [ref=e574]: Learn everything you need to know about specific prescriptions and over-the-counter medications.
+          - link "Search drugs" [ref=e576] [cursor=pointer]:
+            - /url: https://www.healthline.com/drugs
+        - generic [ref=e577]:
+          - generic [ref=e579]:
+            - generic [ref=e580]:
+              - generic [ref=e581]: Pill Identifier
+              - generic [ref=e582]: Identify an unknown tablet or capsule
+            - link "Go to Pill Identifier" [ref=e584] [cursor=pointer]:
+              - /url: https://www.healthline.com/pill-identifier
+          - generic [ref=e588]:
+            - generic [ref=e589]:
+              - generic [ref=e590]: GLP-1 Resource
+              - generic [ref=e591]: Compare places to buy Ozempic online
+            - link "Go to GLP-1 Resource" [ref=e593] [cursor=pointer]:
+              - /url: https://www.healthline.com/nutrition/buy-ozempic-online
+          - generic [ref=e597]:
+            - generic [ref=e598]:
+              - generic [ref=e599]: FindCare
+              - generic [ref=e600]: Find local doctors who accept your insurance
+            - link "Go to FindCare" [ref=e602] [cursor=pointer]:
+              - /url: https://care.healthline.com/find-care
+      - generic [ref=e605]:
+        - generic [ref=e606]: Recommended reads
+        - tablist [ref=e608]:
+          - tab "Top Reads" [selected] [ref=e609] [cursor=pointer]
+          - tab "Fitness" [ref=e610] [cursor=pointer]
+          - tab "Mental Well-Being" [ref=e611] [cursor=pointer]
+          - tab "Product Reviews" [ref=e612] [cursor=pointer]
+          - tab "Recipes" [ref=e613] [cursor=pointer]
+          - tab "Skin Care" [ref=e614] [cursor=pointer]
+        - tabpanel "Top Reads" [ref=e615]:
+          - 'link "Read article: Counting Calories vs. Carbs for Weight Loss" [ref=e616] [cursor=pointer]':
+            - /url: https://www.healthline.com/health/calorie-vs-carb-counting
+            - generic [ref=e618]: Counting Calories vs. Carbs for Weight Loss
+          - 'link "Read article: Which Medications Can Increase Sun Sensitivity?" [ref=e620] [cursor=pointer]':
+            - /url: https://www.healthline.com/health/drugs/sun-sensitivity-and-medications
+            - generic [ref=e622]: Which Medications Can Increase Sun Sensitivity?
+          - 'link "Read article: What Are ‘Ozempic Feet?’ Doctors Explain Latest GLP-1 Side Effect" [ref=e624] [cursor=pointer]':
+            - /url: https://www.healthline.com/health-news/ozempic-feet-doctors-explain-glp-1-side-effect
+            - generic [ref=e626]: What Are ‘Ozempic Feet?’ Doctors Explain Latest GLP-1 Side Effect
+          - 'link "Read article: When and What to Eat Before a Workout" [ref=e628] [cursor=pointer]':
+            - /url: https://www.healthline.com/nutrition/eat-before-workout
+            - generic [ref=e630]: When and What to Eat Before a Workout
+          - 'link "Read article: How Eating More Plant-Based Foods Can Improve Your Gut Health" [ref=e632] [cursor=pointer]':
+            - /url: https://www.healthline.com/nutrition/plant-based-diets-for-gut-health
+            - generic [ref=e634]: How Eating More Plant-Based Foods Can Improve Your Gut Health
+          - 'link "Read article: U.S. Military to Screen for Low Testosterone. Why Experts Are Concerned" [ref=e636] [cursor=pointer]':
+            - /url: https://www.healthline.com/health-news/us-military-testosterone-replacement-therapy-pete-hegseth
+            - generic [ref=e638]: U.S. Military to Screen for Low Testosterone. Why Experts Are Concerned
+      - generic [ref=e640]:
+        - generic [ref=e641]: Why you can trust us on your health journey
+        - generic [ref=e645]:
+          - generic [ref=e646]:
+            - img "For you, by experts" [ref=e647]
+            - img "Built to move you forward" [ref=e648]
+            - img "Reviewed by professionals" [ref=e649]
+            - img "Always up to date" [ref=e650]
+          - generic [ref=e651]:
+            - generic [ref=e655] [cursor=pointer]:
+              - generic [ref=e656]: For you, by experts
+              - generic [ref=e657]: Experienced health writers break down complex topics so your choices feel clearer.
+            - generic [ref=e659] [cursor=pointer]: Built to move you forward
+            - generic [ref=e662] [cursor=pointer]: Reviewed by professionals
+            - generic [ref=e665] [cursor=pointer]: Always up to date
+      - generic [ref=e668]:
+        - generic [ref=e669]:
+          - heading "Featured programs" [level=2] [ref=e670]
+          - link "View all" [ref=e671] [cursor=pointer]:
+            - /url: https://www.healthline.com/sponsored-topics
+        - generic [ref=e672]:
+          - link "Featured program" [ref=e673] [cursor=pointer]:
+            - /url: https://www.healthline.com/program/sleep-apnea-from-diagnosis-to-treatment
+          - link "Featured program" [ref=e674] [cursor=pointer]:
+            - /url: https://www.healthline.com/program/beating-chronic-migraine
+          - link "Featured program" [ref=e675] [cursor=pointer]:
+            - /url: https://www.healthline.com/program/balancing-life-with-eczema
+          - link "Featured program" [ref=e676] [cursor=pointer]:
+            - /url: https://www.healthline.com/program/womens-wellness
+      - generic [ref=e677]:
+        - generic [ref=e678]:
+          - heading "Latest videos" [level=2] [ref=e680]
+          - link "View all videos" [ref=e681] [cursor=pointer]:
+            - /url: https://www.healthline.com/video
+        - generic [ref=e683]:
+          - link [ref=e684] [cursor=pointer]:
+            - /url: https://www.healthline.com/health/video/is-your-heart-rate-healthy
+            - generic [ref=e685]:
+              - img "Is Your Heart Rate Healthy?"
+            - paragraph [ref=e687]: Is Your Heart Rate Healthy?
+          - link [ref=e688] [cursor=pointer]:
+            - /url: https://www.healthline.com/health/video/what-your-poop-color-says-about-your-health
+            - generic [ref=e689]:
+              - img "What Your Poop Color Says About Your Health?"
+            - paragraph [ref=e691]: What Your Poop Color Says About Your Health?
+          - link [ref=e692] [cursor=pointer]:
+            - /url: https://www.healthline.com/health/video/video-is-time-restricted-eating-combined-with-hiit-effective
+            - generic [ref=e693]:
+              - img "Is Fasting Combined with HIIT the Best Health Hack?"
+            - paragraph [ref=e695]: Is Fasting Combined with HIIT the Best Health Hack?
+          - link [ref=e696] [cursor=pointer]:
+            - /url: https://www.healthline.com/health/video/honest-conversation
+            - generic [ref=e697]:
+              - 'img "Honest Conversations: Psoriasis and Mental Health"'
+            - paragraph [ref=e699]: "Honest Conversations: Psoriasis and Mental Health"
+  - contentinfo [ref=e700]:
+    - generic [ref=e701]:
+      - generic [ref=e704]:
+        - link "Visit our Facebook page" [ref=e705] [cursor=pointer]:
+          - /url: http://www.facebook.com/pages/Healthline/173263326992
+          - text: v
+        - link "Visit our TwitterX page" [ref=e706] [cursor=pointer]:
+          - /url: https://x.com/healthline
+          - text: 
+        - link "Visit our Pinterest page" [ref=e707] [cursor=pointer]:
+          - /url: http://pinterest.com/healthline/
+          - text: z
+        - link "Visit our Instagram page" [ref=e708] [cursor=pointer]:
+          - /url: http://www.instagram.com/healthline
+          - text: 
+        - link "Visit our YouTube page" [ref=e709] [cursor=pointer]:
+          - /url: https://www.youtube.com/channel/UC7snF15Idi7px6XujWe_h9A
+          - text: 
+        - link "Visit our Flipboard page" [ref=e710] [cursor=pointer]:
+          - /url: https://flipboard.com/@healthline
+          - text: 
+      - generic [ref=e711]:
+        - generic [ref=e712]:
+          - generic [ref=e714]:
+            - heading "Get our wellness newsletter" [level=2] [ref=e715]
+            - paragraph [ref=e716]: Filter out the noise and nurture your inbox with health and wellness advice that’s inclusive and rooted in medical expertise.
+            - generic [ref=e717]:
+              - generic [ref=e718]:
+                - textbox "Enter your email" [ref=e720]
+                - button "SIGN UP" [ref=e721] [cursor=pointer]
+              - paragraph [ref=e724]:
+                - text: Your
+                - link "privacy" [ref=e725] [cursor=pointer]:
+                  - /url: https://www.healthline.com/about/privacy-notice
+                - text: is important to us
+          - generic [ref=e726]:
+            - text: © 2026 Healthline Media LLC. All rights reserved. Healthline Media is an RVO Health Company. Our website services, content, and products are for informational purposes only. Healthline Media does not provide medical advice, diagnosis, or treatment.
+            - link "See additional information" [ref=e727] [cursor=pointer]:
+              - /url: https://www.healthline.com/additional-information
+            - text: .
+        - generic [ref=e730]:
+          - list [ref=e731]:
+            - listitem [ref=e732]:
+              - link "About Us" [ref=e733] [cursor=pointer]:
+                - /url: https://www.healthline.com/about
+            - listitem [ref=e734]:
+              - link "Contact Us" [ref=e735] [cursor=pointer]:
+                - /url: https://www.healthline.com/about/contact-us
+            - listitem [ref=e736]:
+              - link "Privacy Notice" [ref=e737] [cursor=pointer]:
+                - /url: https://www.healthline.com/about/privacy-notice
+            - listitem [ref=e738]:
+              - button "Privacy Settings" [ref=e739] [cursor=pointer]
+            - listitem [ref=e740]:
+              - link "Advertising Policy" [ref=e741] [cursor=pointer]:
+                - /url: https://www.healthline.com/advertising-policy
+            - listitem [ref=e742]:
+              - link "Health Topics" [ref=e743] [cursor=pointer]:
+                - /url: https://www.healthline.com/directory/topics
+          - list [ref=e744]:
+            - listitem [ref=e745]:
+              - link "Sitemap" [ref=e746] [cursor=pointer]:
+                - /url: https://www.healthline.com/sitemap
+            - listitem [ref=e747]:
+              - link "Medical Affairs" [ref=e748] [cursor=pointer]:
+                - /url: https://www.healthline.com/medical-team
+            - listitem [ref=e749]:
+              - link "Content Integrity" [ref=e750] [cursor=pointer]:
+                - /url: https://www.healthline.com/about/content-integrity
+            - listitem [ref=e751]:
+              - link "Newsletters" [ref=e752] [cursor=pointer]:
+                - /url: https://www.healthline.com/newsletter-signup
+            - listitem
+    - generic [ref=e754]:
+      - link "Healthline Media Logo" [ref=e755] [cursor=pointer]:
+        - /url: https://www.healthlinemedia.com/?utm_source=healthline.com&utm_medium=site&utm_campaign=footer&utm_content=logo
+      - generic [ref=e758]:
+        - generic [ref=e759]:
+          - link "About |" [ref=e760] [cursor=pointer]:
+            - /url: https://www.healthlinemedia.com/?utm_source=healthline.com&utm_medium=site&utm_campaign=footer&utm_content=about
+          - link "Careers |" [ref=e761] [cursor=pointer]:
+            - /url: https://rvohealth.com/careers
+          - link "Advertise with us" [ref=e762] [cursor=pointer]:
+            - /url: https://www.healthlinemedia.com/advertise?utm_source=healthline.com&utm_medium=site&utm_campaign=footer&utm_content=advertise
+        - generic [ref=e763]:
+          - paragraph [ref=e764]: OUR BRANDS
+          - link "Healthline" [ref=e765] [cursor=pointer]:
+            - /url: https://www.healthline.com/
+          - link "Medical News Today" [ref=e766] [cursor=pointer]:
+            - /url: https://www.medicalnewstoday.com/
+          - link "Greatist" [ref=e767] [cursor=pointer]:
+            - /url: https://greatist.com/
+          - link "Psych Central" [ref=e768] [cursor=pointer]:
+            - /url: https://psychcentral.com/
+          - link "Bezzy" [ref=e769] [cursor=pointer]:
+            - /url: https://bezzy.com/
+      - link "@TRUST, AACI Certified logo" [ref=e770] [cursor=pointer]:
+        - /url: https://aacihealthcare.com/certificates/c143-1-2021-trust-usa/

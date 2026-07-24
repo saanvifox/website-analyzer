@@ -11,20 +11,20 @@ class PlaywrightMCPClient:
 
     async def start(self):
         server = StdioServerParameters(
-            command="playwright-mcp",
-            args=[
-                "--headless",
-                "--isolated",
-                "--snapshot-mode",
-                "full",
-                "--codegen",
-                "none",
-                "--image-responses",
-                "omit",
-               
-            ],
+              command="playwright-mcp",
+              args=[
+                    "--headless",
+                    "--isolated",
+                    "--browser",
+                    "chromium",
+                    "--snapshot-mode",
+                    "full",
+                    "--codegen",
+                    "none",
+                    "--image-responses",
+                    "omit",
+    ],
         )
-
         read_stream, write_stream = (
             await self.exit_stack.enter_async_context(
                 stdio_client(server)
