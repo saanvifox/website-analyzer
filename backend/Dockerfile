@@ -24,11 +24,17 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright MCP
+# Install Playwright MCP server
 RUN npm install -g @playwright/mcp@latest
 
-# Install the browser Playwright MCP is requesting
-RUN npx @playwright/mcp install-browser chrome-for-testing
+# Force install the exact browser MCP needs + debug output
+RUN npx @playwright/mcp install-browser chrome-for-testing --force && \
+    echo "=== Browser install completed ===" && \
+    ls -la /root/.cache/ms-playwright || echo "Cache folder not found" && \
+    npx @playwright/mcp list-browsers || echo "No list-browsers command"
+
+# Also install regular playwright browsers as fallback
+RUN npx playwright install chrome --with-deps
 
 COPY . .
 

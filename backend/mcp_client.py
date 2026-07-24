@@ -11,18 +11,19 @@ class PlaywrightMCPClient:
 
     async def start(self):
         server = StdioServerParameters(
-              command="playwright-mcp",
-              args=[
-                    "--headless",
-                    "--isolated",
-                    "--browser",
-                    "chromium",
-                    "--snapshot-mode",
-                    "full",
-                    "--codegen",
-                    "none",
-                    "--image-responses",
-                    "omit",
+    command="playwright-mcp",
+    args=[
+        "--headless",
+        "--isolated",
+        "--browser",
+        "chrome",
+        "--no-sandbox",
+        "--snapshot-mode",
+        "full",
+        "--codegen",
+        "none",
+        "--image-responses",
+        "omit",
     ],
         )
         read_stream, write_stream = (
