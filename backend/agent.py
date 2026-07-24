@@ -1,5 +1,7 @@
 import asyncio
+from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 from compressor import compress_snapshot
 from harness import ActionResult, Harness
@@ -14,6 +16,27 @@ class Agent:
         self.mcp = PlaywrightMCPClient()
         self.harness = Harness()
         self.groq_tools: list[dict[str, Any]] = []
+
+        self.steps: list[dict[str, Any]] = []
+        self.run_id = ""
+        self.screenshot_directory = Path("screenshots")
+
+    def reset_run(self) -> None:
+        """
+        Reset data for a new website-analysis request.
+        """
+        self.harness = Harness()
+        self.steps = []
+        self.run_id = uuid4().hex
+
+        self.screenshot_directory = (
+            Path("screenshots") / self.run_id
+        )
+
+        self.screenshot_directory.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
 
     def record(
         self,
@@ -33,8 +56,8 @@ class Agent:
         """
         Explicitly request a fresh browser snapshot.
 
-        This should mainly be used as a fallback because Playwright MCP
-        normally returns the updated page state after browser actions.
+        This is mainly a fallback because browser actions normally
+        return the updated page state.
         """
         result = await self.mcp.call_tool(
             "browser_snapshot",
@@ -49,6 +72,90 @@ class Agent:
             )
 
         return snapshot
+
+    async def take_step_screenshot(
+        self,
+        step_number: int,
+    ) -> str | None:
+        """
+        Save a screenshot for one agent step.
+
+        The filename is relative to the Playwright MCP output
+        directory configured in mcp_client.py.
+        """
+        filename = (
+            f"{self.run_id}/"
+            f"step-{step_number}.png"
+        )
+
+        try:
+            await self.mcp.call_tool(
+                "browser_take_screenshot",
+                {
+                    "type": "png",
+
+                    # False captures the visible browser viewport.
+                    # This is usually clearer and much smaller than
+                    # a full-page image.
+                    "fullPage": False,
+
+                    "filename": filename,
+                },
+            )
+
+            expected_file = (
+                Path("screenshots")
+                / self.run_id
+                / f"step-{step_number}.png"
+            )
+
+            if not expected_file.exists():
+                print(
+                    "Screenshot tool completed, but the "
+                    "expected file was not found:",
+                    expected_file,
+                    flush=True,
+                )
+
+                return None
+
+            return (
+                f"/screenshots/"
+                f"{self.run_id}/"
+                f"step-{step_number}.png"
+            )
+
+        except Exception as error:
+            print(
+                f"Screenshot failed for step "
+                f"{step_number}: {error}",
+                flush=True,
+            )
+
+            return None
+
+    def add_step(
+        self,
+        step_number: int,
+        action: str,
+        arguments: dict[str, Any],
+        result: str,
+        screenshot_url: str | None,
+        status: str = "success",
+    ) -> None:
+        """
+        Store one frontend-displayable agent step.
+        """
+        self.steps.append(
+            {
+                "step": step_number,
+                "action": action,
+                "arguments": arguments,
+                "result": result,
+                "status": status,
+                "screenshot_url": screenshot_url,
+            }
+        )
 
     @staticmethod
     def summarize_tool_result(
@@ -73,7 +180,8 @@ class Agent:
         Returns:
             {
                 "answer": final answer when finish is called,
-                "snapshot": updated MCP page result for browser tools
+                "snapshot": updated page state,
+                "result": short human-readable action result
             }
         """
         if tool_name == "finish":
@@ -87,6 +195,7 @@ class Agent:
             return {
                 "answer": str(answer),
                 "snapshot": None,
+                "result": "Agent completed the task.",
             }
 
         result = await self.mcp.call_tool(
@@ -94,7 +203,9 @@ class Agent:
             arguments,
         )
 
-        result_text = self.mcp.result_to_text(result).strip()
+        result_text = self.mcp.result_to_text(
+            result
+        ).strip()
 
         compact_result = self.summarize_tool_result(
             tool_name,
@@ -110,6 +221,7 @@ class Agent:
         return {
             "answer": None,
             "snapshot": result_text or None,
+            "result": compact_result,
         }
 
     async def compress(
@@ -146,8 +258,8 @@ class Agent:
         self,
         url: str,
         task: str,
-    ) -> str:
-        self.harness = Harness()
+    ) -> dict[str, Any]:
+        self.reset_run()
 
         try:
             await self.mcp.start()
@@ -175,8 +287,6 @@ class Agent:
                 ).strip()
             )
 
-            # Only request a separate snapshot when navigation did not
-            # return any usable page state.
             if not current_snapshot:
                 current_snapshot = await self.get_snapshot()
 
@@ -186,9 +296,21 @@ class Agent:
                 "Initial page navigation completed.",
             )
 
-            for step in range(self.MAX_STEPS):
+            initial_screenshot = (
+                await self.take_step_screenshot(0)
+            )
+
+            self.add_step(
+                step_number=0,
+                action="browser_navigate",
+                arguments={"url": url},
+                result="Initial page navigation completed.",
+                screenshot_url=initial_screenshot,
+            )
+
+            for step in range(1, self.MAX_STEPS + 1):
                 print(
-                    f"\n--- Agent step {step + 1} "
+                    f"\n--- Agent step {step} "
                     f"of {self.MAX_STEPS} ---",
                     flush=True,
                 )
@@ -222,6 +344,7 @@ class Agent:
                     "Groq selected:",
                     tool_name,
                     arguments,
+                    flush=True,
                 )
 
                 try:
@@ -231,23 +354,65 @@ class Agent:
                     )
 
                 except Exception as error:
-                    print("Tool error:", error)
+                    error_message = f"Tool failed: {error}"
+
+                    print(
+                        "Tool error:",
+                        error,
+                        flush=True,
+                    )
 
                     self.record(
                         tool_name,
                         str(arguments),
-                        f"Tool failed: {error}",
+                        error_message,
                     )
 
-                    # Keep the previous snapshot instead of immediately
-                    # making another browser_snapshot call. This avoids
-                    # repeated 30-second snapshot timeouts.
+                    failed_screenshot = (
+                        await self.take_step_screenshot(
+                            step
+                        )
+                    )
+
+                    self.add_step(
+                        step_number=step,
+                        action=tool_name,
+                        arguments=arguments,
+                        result=error_message,
+                        screenshot_url=failed_screenshot,
+                        status="error",
+                    )
+
+                    # Keep the previous snapshot and allow the LLM
+                    # to choose a different action.
                     continue
 
                 answer = tool_result.get("answer")
+                action_result = (
+                    tool_result.get("result")
+                    or f"{tool_name} completed."
+                )
+
+                step_screenshot = (
+                    await self.take_step_screenshot(
+                        step
+                    )
+                )
+
+                self.add_step(
+                    step_number=step,
+                    action=tool_name,
+                    arguments=arguments,
+                    result=action_result,
+                    screenshot_url=step_screenshot,
+                )
 
                 if answer is not None:
-                    return answer
+                    return {
+                        "answer": answer,
+                        "steps": self.steps,
+                        "run_id": self.run_id,
+                    }
 
                 updated_snapshot = tool_result.get(
                     "snapshot"
@@ -256,15 +421,16 @@ class Agent:
                 if updated_snapshot:
                     current_snapshot = updated_snapshot
                 else:
-                    # Rare fallback for tools that return no page state.
                     try:
                         current_snapshot = (
                             await self.get_snapshot()
                         )
+
                     except Exception as error:
                         print(
                             "Snapshot fallback failed:",
                             error,
+                            flush=True,
                         )
 
                         self.record(
@@ -276,10 +442,14 @@ class Agent:
                             ),
                         )
 
-            return (
-                "The agent reached its maximum "
-                "number of steps."
-            )
+            return {
+                "answer": (
+                    "The agent reached its maximum "
+                    "number of steps."
+                ),
+                "steps": self.steps,
+                "run_id": self.run_id,
+            }
 
         finally:
             await self.mcp.close()

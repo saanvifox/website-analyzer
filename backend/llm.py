@@ -14,7 +14,7 @@ GROQ_API_URL = (
     "https://api.groq.com/openai/v1/chat/completions"
 )
 
-GROQ_MODEL = "openai/gpt-oss-120b"
+GROQ_MODEL = "qwen/qwen3.6-27b"
 
 
 def convert_mcp_tools(
@@ -85,22 +85,9 @@ def convert_mcp_tools(
     return groq_tools
 
 
-def build_agent_prompt(
-    task: str,
-    snapshot: str,
-    history: str,
-) -> str:
-    return f"""
+def build_system_prompt() -> str:
+    return """
 You are a browser agent controlling Playwright MCP.
-
-TASK:
-{task}
-
-CURRENT PAGE SNAPSHOT:
-{snapshot}
-
-RECENT ACTIONS:
-{history}
 
 Choose exactly one provided tool.
 
@@ -122,7 +109,25 @@ Rules:
 9. Do not navigate away from the website unless required.
 10. Never repeat an action that already succeeded.
 11. Select only one tool.
-12. The FINAL response tool is called 'finish' and 'answer' is its arguement.
+12. The final response tool is called `finish`.
+13. `answer` is an argument of `finish`, not a tool name.
+""".strip()
+
+
+def build_agent_prompt(
+    task: str,
+    snapshot: str,
+    history: str,
+) -> str:
+    return f"""
+TASK:
+{task}
+
+CURRENT PAGE SNAPSHOT:
+{snapshot}
+
+RECENT ACTIONS:
+{history}
 """.strip()
 
 
@@ -211,11 +216,20 @@ def send_groq_request(
                 f"{response.text}"
             )
 
-        print("========== GROQ 429 ==========")
-        print(response.text)
-        print("Headers:")
-        print(dict(response.headers))
-        print("==============================")
+        print(
+            "========== GROQ 429 ==========",
+            flush=True,
+        )
+        print(response.text, flush=True)
+        print("Headers:", flush=True)
+        print(
+            dict(response.headers),
+            flush=True,
+        )
+        print(
+            "==============================",
+            flush=True,
+        )
 
         if attempt == max_retries - 1:
             break
@@ -227,7 +241,8 @@ def send_groq_request(
 
         print(
             "Groq rate limit reached. "
-            f"Waiting {wait_seconds:.1f} seconds..."
+            f"Waiting {wait_seconds:.1f} seconds...",
+            flush=True,
         )
 
         time.sleep(wait_seconds)
@@ -330,6 +345,8 @@ def ask_llm(
             "No tools were provided to Groq."
         )
 
+    system_prompt = build_system_prompt()
+
     prompt = build_agent_prompt(
         task,
         snapshot,
@@ -340,9 +357,13 @@ def ask_llm(
         "model": GROQ_MODEL,
         "messages": [
             {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
                 "role": "user",
                 "content": prompt,
-            }
+            },
         ],
         "tools": groq_tools,
 
@@ -372,6 +393,7 @@ def ask_llm(
             f'completion='
             f'{usage.get("completion_tokens", 0)},',
             f'total={usage.get("total_tokens", 0)}',
+            flush=True,
         )
 
     selected = parse_tool_call(data)
@@ -380,6 +402,7 @@ def ask_llm(
         "Groq selected:",
         selected["name"],
         selected["arguments"],
+        flush=True,
     )
 
     return selected

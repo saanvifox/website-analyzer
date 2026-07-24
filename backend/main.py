@@ -1,6 +1,11 @@
+from pathlib import Path
+from typing import Any
+
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+
 from agent import Agent
 
 
@@ -15,21 +20,45 @@ app.add_middleware(
 )
 
 
+SCREENSHOT_DIRECTORY = Path("screenshots").resolve()
+
+SCREENSHOT_DIRECTORY.mkdir(
+    parents=True,
+    exist_ok=True,
+)
+
+app.mount(
+    "/screenshots",
+    StaticFiles(
+        directory=str(SCREENSHOT_DIRECTORY),
+    ),
+    name="screenshots",
+)
+
+
 class AnalyzeRequest(BaseModel):
     url: str
     task: str
 
+
 @app.api_route("/", methods=["GET", "HEAD"])
 def home():
-    return {"message": "Hello World"}
-
+    return {
+        "message": "Website Analyzer API is running."
+    }
 
 
 @app.post("/analyze")
-async def analyze(request: AnalyzeRequest):
-    print("ANALYZE REQUEST STARTED", flush=True)
+async def analyze(
+    request: AnalyzeRequest,
+) -> dict[str, Any]:
+    print(
+        "ANALYZE REQUEST STARTED",
+        flush=True,
+    )
 
     url = request.url.strip()
+    task = request.task.strip()
 
     if not url:
         raise HTTPException(
@@ -37,16 +66,39 @@ async def analyze(request: AnalyzeRequest):
             detail="A URL is required.",
         )
 
+    if not task:
+        raise HTTPException(
+            status_code=400,
+            detail="A task is required.",
+        )
+
     agent = Agent()
 
-    summary = await agent.run(
-        url,
-        request.task,
-    )
+    try:
+        result = await agent.run(
+            url,
+            task,
+        )
 
-    print("ANALYZE REQUEST FINISHED:", summary[:200], flush=True)
+    except Exception as error:
+        print(
+            "ANALYZE REQUEST FAILED:",
+            error,
+            flush=True,
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(error),
+        ) from error
+
+    print(
+        "ANALYZE REQUEST FINISHED:",
+        str(result.get("answer", ""))[:200],
+        flush=True,
+    )
 
     return {
         "url": url,
-        "summary": summary,
+        **result,
     }
