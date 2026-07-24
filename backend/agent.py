@@ -84,8 +84,8 @@ class Agent:
         directory configured in mcp_client.py.
         """
         filename = (
-            f"{self.run_id}/"
-            f"step-{step_number}.png"
+              f"screenshots/{self.run_id}/"
+              f"step-{step_number}.png"
         )
 
         try:

@@ -33,8 +33,7 @@ class PlaywrightMCPClient:
                 "none",
                 "--image-responses",
                 "omit",
-                "--output-dir",
-                str(screenshot_output_directory),
+              
             ],
         )
 
