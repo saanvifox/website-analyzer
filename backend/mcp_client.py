@@ -27,6 +27,8 @@ class PlaywrightMCPClient:
                 "/app/node_modules/@playwright/mcp/cli.js",
                 "--headless",
                 "--isolated",
+                "--browser",
+                "chromium",
                 "--snapshot-mode",
                 "incremental",
                 "--codegen",
