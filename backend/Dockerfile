@@ -32,7 +32,7 @@ RUN npm init -y \
     && npm install --save-exact @playwright/mcp@0.0.78
 
 # Confirm that MCP can run without downloading anything.
-RUN npx --no-install @playwright/mcp --help
+RUN node /app/node_modules/@playwright/mcp/cli.js --help
 
 # The Microsoft Playwright base image already contains browser
 # dependencies, but install the browser expected by this MCP version.

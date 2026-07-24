@@ -24,8 +24,7 @@ class PlaywrightMCPClient:
         server_params = StdioServerParameters(
             command="npx",
             args=[
-                "--no-install"
-                "@playwright/mcp",
+                "/app/node_modules/@playwright/mcp/cli.js",
                 "--headless",
                 "--isolated",
                 "--snapshot-mode",
