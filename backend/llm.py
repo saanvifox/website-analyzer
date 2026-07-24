@@ -372,7 +372,7 @@ def ask_llm(
         "tool_choice": "required",
 
         "temperature": 0,
-        "reasoning_effort": "low",
+        "reasoning_effort": "none",
 
         # 200 was too small for GPT-OSS reasoning
         # plus the final function call.
