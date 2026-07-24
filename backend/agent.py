@@ -189,17 +189,27 @@ class Agent:
             for step in range(self.MAX_STEPS):
                 print(
                     f"\n--- Agent step {step + 1} "
-                    f"of {self.MAX_STEPS} ---"
+                    f"of {self.MAX_STEPS} ---",
+                    flush=True,
                 )
 
-                compressed_snapshot = await self.compress(
-                    task,
-                    current_snapshot,
-                )
+                if len(current_snapshot) > 4000:
+                    snapshot_for_groq = await self.compress(
+                        task,
+                        current_snapshot,
+                    )
+                else:
+                    snapshot_for_groq = current_snapshot
+
+                    print(
+                        "Skipping compression for small snapshot "
+                        f"({len(current_snapshot)} characters).",
+                        flush=True,
+                    )
 
                 selected = await self.choose_action(
                     task,
-                    compressed_snapshot,
+                    snapshot_for_groq,
                 )
 
                 tool_name = selected["name"]

@@ -122,6 +122,7 @@ Rules:
 9. Do not navigate away from the website unless required.
 10. Never repeat an action that already succeeded.
 11. Select only one tool.
+12. The FINAL response tool is called 'finish' and 'answer' is its arguement.
 """.strip()
 
 
