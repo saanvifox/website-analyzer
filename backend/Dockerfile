@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/playwright/python:v1.61.0-noble
 
 WORKDIR /app
 
-# Install Node.js and npm.
+# Install Node.js 22 and npm.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -21,28 +21,28 @@ RUN node --version \
     && npm --version \
     && npx --version
 
-# Install Python dependencies first for better Docker caching.
+# Install Python dependencies.
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright MCP locally inside /app.
-# Pin the version currently appearing in your logs.
-RUN npm init -y \
-    && npm install --save-exact @playwright/mcp@0.0.78
+# Install Playwright MCP globally.
+RUN npm install --global --save-exact @playwright/mcp@0.0.78
 
-# Confirm that MCP can run without downloading anything.
-RUN node /app/node_modules/@playwright/mcp/cli.js --help
+# Confirm the global executable is available.
+RUN which playwright-mcp \
+    && playwright-mcp --help
 
-# The Microsoft Playwright base image already contains browser
-# dependencies, but install the browser expected by this MCP version.
-RUN npx playwright install chromium
+# Install the browser expected by this MCP package.
+RUN playwright-mcp install-browser chrome-for-testing
 
+# Copy application files.
 COPY . .
 
-# Ensure screenshots can be created and served by FastAPI.
-RUN mkdir -p /app/screenshots
+# Create a writable screenshots directory.
+RUN mkdir -p /app/screenshots \
+    && chmod -R 777 /app/screenshots
 
 ENV PYTHONUNBUFFERED=1
+ENV NODE_ENV=production
 
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
