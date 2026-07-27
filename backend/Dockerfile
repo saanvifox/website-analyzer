@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/playwright/python:v1.61.0-noble
 
 WORKDIR /app
 
-# Install Node.js 22 and npm.
+# Install Node.js, npm, and tools needed to install Chrome.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -17,28 +17,39 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
+# Verify Node installation.
 RUN node --version \
     && npm --version \
     && npx --version
+
+# Install Google Chrome Stable.
+RUN curl -fsSL \
+        https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+        -o /tmp/google-chrome.deb \
+    && apt-get update \
+    && apt-get install -y /tmp/google-chrome.deb \
+    && rm /tmp/google-chrome.deb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Confirm that Chrome exists at the path Playwright expects.
+RUN google-chrome --version \
+    && test -x /opt/google/chrome/chrome
 
 # Install Python dependencies.
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Playwright MCP globally.
-RUN npm install --global --save-exact @playwright/mcp@0.0.78
+RUN npm install --global @playwright/mcp@0.0.78
 
-# Confirm the global executable is available.
+# Confirm that the global MCP executable works.
 RUN which playwright-mcp \
     && playwright-mcp --help
-
-# Install the browser expected by this MCP package.
-RUN playwright-mcp install-browser chrome-for-testing
 
 # Copy application files.
 COPY . .
 
-# Create a writable screenshots directory.
+# Create screenshot directory.
 RUN mkdir -p /app/screenshots \
     && chmod -R 777 /app/screenshots
 

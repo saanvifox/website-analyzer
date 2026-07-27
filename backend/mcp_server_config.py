@@ -18,11 +18,15 @@ def create_mcp_server_params() -> StdioServerParameters:
         args=[
             "--headless",
             "--isolated",
+            "--browser",
+            "chrome",
             "--snapshot-mode",
-            "incremental",
+            "full",
             "--codegen",
             "none",
             "--image-responses",
             "omit",
+            "--output-dir",
+            "/app/screenshots"
         ],
     )
